@@ -1,0 +1,33 @@
+.product_bag_container{
+    width: 300px;
+    text-align: center;
+
+}
+
+.title_product{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+}
+
+.product_price{
+    font-weight: 600;
+    font-size: 30px;
+}
+
+.button_to_bag{
+    margin-top: 8px;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: rgb(24, 23, 23);
+    cursor: pointer;
+}
+
+.product_image{
+    display: flex;
+    flex: 1;
+    width: 50%;
+}
