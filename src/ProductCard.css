@@ -1,0 +1,26 @@
+.product-card-container {
+  width: 400px;
+  text-align: center;
+}
+
+.title-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.product-price {
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.add-to-cart-btn {
+    margin-top: 8px;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: rgb(87, 95, 183);
+    cursor: pointer;
+}
+
