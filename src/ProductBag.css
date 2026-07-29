@@ -1,33 +1,70 @@
 .product_bag_container{
+    display: flex;
     width: 300px;
-    text-align: center;
-
+    flex-direction: column;
+    border-radius: 12px;
+    padding: 12px;
 }
 
 .title_product{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
+    margin: 0;
+    font-size: 14px;
+    color: blueviolet;
+    font-weight: 500;
+    line-height: 1.4;
 
 }
 
 .product_price{
-    font-weight: 600;
-    font-size: 30px;
+    font-weight: bold;
+    font-size: 16px;
+    color: orangered;
+    margin-top: 20px;
 }
 
-.button_to_bag{
-    margin-top: 8px;
-    color: white;
-    padding: 8px 16px;
-    border-radius: 8px;
-    background-color: rgb(24, 23, 23);
-    cursor: pointer;
+.edit_btn{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 16px;
+    gap: 20px;
+    padding: 14px 0;
+
 }
 
 .product_image{
-    display: flex;
-    flex: 1;
-    width: 50%;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
 }
+
+.product_css{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+
+
+.edit_content_product{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+   
+    
+}
+
+.first_button{
+    color: red;
+    background-color: black;
+    font-size: 20px;
+
+}
+
+.second_button{
+    color: black;
+    background-color: white;
+    font-size: 20px;
+}
+
