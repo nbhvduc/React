@@ -1,10 +1,10 @@
-import { Tasks } from "./tasks"
+import { ShoppingList } from "./ShopList/ShoppingList"
 
 
 function App() {
   return (
    
-  <Tasks/>
+    <ShoppingList/>
    
   )
 }
