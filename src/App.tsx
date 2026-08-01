@@ -1,12 +1,10 @@
-import { Tasks } from "./tasks"
+import { Login } from "./assets/Login/login"
 
 
 function App() {
-  return (
-   
-  <Tasks/>
-   
-  )
+    return(
+        <Login/>
+    )
 }
 
 export default App
