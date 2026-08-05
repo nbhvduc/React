@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export function Login() {
     const [email, setEmail] = useState("")
@@ -45,24 +46,29 @@ export function Login() {
                 <h1>勤怠管理アプリ</h1>
                 <p>ログイン</p>
             </div>
-            <label htmlFor="email">メール</label>
-            <input id="email"
-                type="text"
-                value={email} onChange={(e) => setEmail(e.target.value)} />
+            <div>
+                <label htmlFor="email">メール</label>
+                <input id="email"
+                    type="text"
+                    value={email} onChange={(e) => setEmail(e.target.value)} />
+            </div>
 
-            <label htmlFor="password">パスワード</label>
-            <input id="password"
-                type="password"
-                value={password} onChange={(e) => setPassword(e.target.value)} />
+            <div>
+                <label htmlFor="password">パスワード</label>
+                <input id="password"
+                    type="password"
+                    value={password} onChange={(e) => setPassword(e.target.value)} />
+            </div>
 
-            <a href="/forgot_password">パスワードを忘れた方</a>
+            <div>
+                <Link to="/forgot_password">パスワードを忘れた方</Link>
 
-            <button onClick={handleLogin} disabled={loading}>
-                {loading ? "ログイン..." : "ログイン"}
-            </button>
+                <button onClick={handleLogin} disabled={loading}>
+                    {loading ? "ログイン..." : "ログイン"}
+                </button>
 
-            <a href="/register">社員登録</a>
-
+                <Link to="/register">社員登録</Link>
+            </div>
 
 
         </div>

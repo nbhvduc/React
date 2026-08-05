@@ -1,12 +1,9 @@
-import { Register } from "./assets/Register/register"
+import { Link, Outlet } from "react-router";
 
-
-
-function App() {
-    return (
-        <Register />
-    )
-
+export default function App() {
+  return (
+    <>
+      <Outlet />
+    </>
+  );
 }
-
-export default App

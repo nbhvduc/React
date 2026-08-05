@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 
 export function Register() {
     const [email, setEmail] = useState("")
@@ -9,6 +9,10 @@ export function Register() {
 
     async function handleRegister() {
         setLoading(true);
+
+
+
+
 
         try {
             const response = await fetch(
@@ -49,27 +53,36 @@ export function Register() {
     }
 
 
+
     return (
         <div>
             <div>
                 <h2>勤怠管理アプリ</h2>
                 <p>社員登録</p>
             </div>
-            <label htmlFor="email">メール</label>
-            <input id="email"
-                type="text"
-                value={email} onChange={(e) => setEmail(e.target.value)} />
 
-            <label htmlFor="password">パスワード</label>
-            <input id="password"
-                type="password"
-                value={password} onChange={(e) => setPassword(e.target.value)} />
+            <div>
+                <label htmlFor="email">メール</label>
+                <input id="email"
+                    type="text"
+                    value={email} onChange={(e) => setEmail(e.target.value)} />
+            </div>
 
+            <div>
+                <label htmlFor="password">パスワード</label>
+                <input id="password"
+                    type="password"
+                    value={password} onChange={(e) => setPassword(e.target.value)} />
+            </div>
 
-            <button onClick={handleRegister} disabled={loading}>
-                {loading ? "登録処理... " : "会員登録"}</button>
+            <div>
 
-            <a href="/login">ログイン</a>
+                <button onClick={handleRegister} disabled={loading}>
+                    {loading ? "登録処理... " : "会員登録"}</button>
+
+                <Link to="/login">ログイン</Link>
+
+            </div>
 
 
 
