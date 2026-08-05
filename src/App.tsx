@@ -1,10 +1,12 @@
-import { Login } from "./assets/Login/login"
+import { Register } from "./assets/Register/register"
+
 
 
 function App() {
-    return(
-        <Login/>
+    return (
+        <Register />
     )
+
 }
 
 export default App
