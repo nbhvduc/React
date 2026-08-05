@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 
 export function Login() {
     const [email, setEmail] = useState("")
@@ -30,8 +31,6 @@ export function Login() {
             const data = await response.json();
             console.log(data.message)
 
-
-
         } catch (err) {
             console.log(err)
         } finally {
@@ -45,25 +44,32 @@ export function Login() {
                 <h1>勤怠管理アプリ</h1>
                 <p>ログイン</p>
             </div>
-            <label htmlFor="email">メール</label>
-            <input id="email"
-                type="text"
-                value={email} onChange={(e) => setEmail(e.target.value)} />
 
-            <label htmlFor="password">パスワード</label>
-            <input id="password"
-                type="password"
-                value={password} onChange={(e) => setPassword(e.target.value)} />
-
-            <a href="/forgot_password">パスワードを忘れた方</a>
+            <div>
+                <label htmlFor="email">メール</label>
+                <input id="email"
+                    type="text"
+                    value={email} onChange={(e) => setEmail(e.target.value)} />
+            </div>
+            <div>
+                <label htmlFor="password">パスワード</label>
+                <input id="password"
+                    type="password"
+                    value={password} onChange={(e) => setPassword(e.target.value)} />
+               
+            </div>
 
             <button onClick={handleLogin} disabled={loading}>
                 {loading ? "ログイン..." : "ログイン"}
             </button>
 
-            <a href="/register">社員登録</a>
+            <div>
+                <Link to="/forgot-password">パスワードを忘れた方</Link>
+            </div>
 
-
+            <div>
+                <Link to={"/register"}>Register</Link>
+            </div>
 
         </div>
     )
