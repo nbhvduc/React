@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { useNavigate } from "react-router";
 
 export function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
+    const[ErrorMessage,setErrorMessage]=useState("")
+    const[showPassword,setShowPassword]=useState("password")
+    const navigate=useNavigate()
 
 
     async function handleLogin() {
@@ -25,17 +29,34 @@ export function Login() {
 
                 }
             );
+
+             const data = await response.json();
+
+
             if (!response.ok) {
-                throw new Error("Failed to fetch user")
+                setErrorMessage(data.detail);
+                return;
+                
             };
-            const data = await response.json();
-            console.log(data.message)
+
+            // navigate
+            navigate("/")
+           
 
         } catch (err) {
-            console.log(err)
+            console.log(err);
+            setErrorMessage("サーバーに接続できませんでした");
         } finally {
             setLoading(false)
         };
+    }
+
+    function handleShowPassword(){
+        if(showPassword==="password"){
+            setShowPassword("text")
+        }else{
+            setShowPassword("password")
+        }
     }
 
     return (
@@ -54,10 +75,13 @@ export function Login() {
             <div>
                 <label htmlFor="password">パスワード</label>
                 <input id="password"
-                    type="password"
+                    type={showPassword}
                     value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <button onClick={handleShowPassword} >パスワードを表示</button>
                
             </div>
+
+            {ErrorMessage && <p style={{color:"red"}}>{ErrorMessage}</p>}
 
             <button onClick={handleLogin} disabled={loading}>
                 {loading ? "ログイン..." : "ログイン"}
@@ -68,7 +92,7 @@ export function Login() {
             </div>
 
             <div>
-                <Link to={"/register"}>Register</Link>
+                <Link to={"/register"}>社員登録</Link>
             </div>
 
         </div>
