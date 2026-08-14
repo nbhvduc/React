@@ -1,5 +1,7 @@
-import {  useNavigate } from "react-router";
+
 import { useState } from "react";
+import { useLocation, useNavigate} from "react-router";
+
 
 
 export function VerifyEmail(){
@@ -8,20 +10,23 @@ export function VerifyEmail(){
     const[ErrorMessage,setErrorMessage]=useState("")
     const[loading,setLoading]=useState(false)
     const navigate=useNavigate()
-    const[email,setEmail]=useState("")
+    
+    
+    const location=useLocation()
+    const email=location.state?.email??""
 
     async function handleVerifyEmail(){
         setLoading(true)
         try{
             const response=await fetch(
-               "/auth/verify_email",
+               "http://127.0.0.1:8000/auth/verify_email",
                {
                 method:"POST",
                 headers:{
                     "Content-type":"application/json"
                 },
                 body:JSON.stringify({
-                    email:email,
+                  
                     code:code,
                 }),
                 
@@ -36,7 +41,7 @@ export function VerifyEmail(){
                 return; 
             }
             
-            navigate("/")
+            
             
         }catch(error){
             console.log(error)
@@ -53,7 +58,7 @@ export function VerifyEmail(){
 
         try{
             const response=await fetch(
-                "/auth/resend_otp_email",
+                "http://127.0.0.1:8000/auth/resend_otp_email",
                 {
                     method:"POST",
                     headers:{
@@ -71,28 +76,29 @@ export function VerifyEmail(){
             if(!response.ok){
                 setErrorMessage(data.detail)
             }
+            navigate("/login")
 
         }catch(error){
             console.log(error)
         }finally{
             setLoading(false)
-        }
+        };
         
     }
 
         
         
     return(
+       <form onSubmit={(e)=>{
+        e.preventDefault();
+        handleVerifyEmail();
+       }} >
         <div>
             <div>
                 <h3>認証コードを入力してください</h3>
-                <p>///////</p>
+                <p>認証コードをメールアドレスに送信しました。{email}</p>
             </div>
-             <div>
-                <input id="email"
-                    type="text"
-                    value={email} onChange={(e)=>setEmail(e.target.value)}/>
-            </div>
+             
             <div>
                 <input id="code"
                     type="text"
@@ -103,12 +109,12 @@ export function VerifyEmail(){
 
 
             <div>
-                <button onClick={handleVerifyEmail} disabled={loading}>
+                <button type="submit" disabled={loading}>
                     {loading ? "確認中...":"完了"}
                 </button>
             </div>
             <div>
-                <p>SNS が届いていませんか？</p> 
+                <p>コードが届いていませんか？</p> 
                 <a href="#"
                 onClick={(e)=>{
                 e.preventDefault();
@@ -116,6 +122,7 @@ export function VerifyEmail(){
                 }}>再送信</a>
             </div>
         </div>
+        </form>
     )
 
 

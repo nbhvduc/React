@@ -1,22 +1,23 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
+import { Eye, EyeOff } from "lucide-react" 
 
 export function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
     const[ErrorMessage,setErrorMessage]=useState("")
-    const[showPassword,setShowPassword]=useState("password")
+    const[showPassword,setShowPassword]=useState(false)
     const navigate=useNavigate()
 
 
-    async function handleLogin() {
+    async function handleLogin() {  
         setLoading(true);
 
         try {
             const response = await fetch(
-                "/auth/login",
+                "http://127.0.0.1:8000/auth/login",
                 {
                     method: "POST",
                     headers: {
@@ -40,7 +41,7 @@ export function Login() {
             };
 
             // navigate
-            navigate("/")
+            navigate("/Menu")
            
 
         } catch (err) {
@@ -51,15 +52,14 @@ export function Login() {
         };
     }
 
-    function handleShowPassword(){
-        if(showPassword==="password"){
-            setShowPassword("text")
-        }else{
-            setShowPassword("password")
-        }
-    }
+   
+    
 
     return (
+        <form onSubmit={(e)=>{
+            e.preventDefault();
+            handleLogin();
+        }}>
         <div>
             <div>
                 <h1>勤怠管理アプリ</h1>
@@ -70,20 +70,33 @@ export function Login() {
                 <label htmlFor="email">メール</label>
                 <input id="email"
                     type="text"
+                    placeholder="yamada@example.com"
+                    onFocus={(e)=>e.target.placeholder=""}
+                    onBlur={(e)=>e.target.placeholder="yamada@example.com"}
+                    name="email"
+                    autoComplete="email"
                     value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
-            <div>
+            <div style={{position:"relative",display:"inline-block"}}>
                 <label htmlFor="password">パスワード</label>
                 <input id="password"
-                    type={showPassword}
+                    type={showPassword?"text":"password"}
+                    placeholder="........"
+                    onFocus={(e)=>e.target.placeholder=""}
+                    onBlur={(e)=>e.target.placeholder="......."}
                     value={password} onChange={(e) => setPassword(e.target.value)} />
-                    <button onClick={handleShowPassword} >パスワードを表示</button>
+                    <button 
+                    type="button"
+                    onClick={()=>setShowPassword((prev)=>!prev)}
+                    style={{position:"absolute",right:8,top:"50%",transform:"translateY(-50%)"}}>
+                        {showPassword ?<EyeOff size={8}/>:<Eye size={8}/>}
+                    </button>
                
-            </div>
+            </div> 
 
             {ErrorMessage && <p style={{color:"red"}}>{ErrorMessage}</p>}
 
-            <button onClick={handleLogin} disabled={loading}>
+            <button type="submit" disabled={loading}>
                 {loading ? "ログイン..." : "ログイン"}
             </button>
 
@@ -96,6 +109,7 @@ export function Login() {
             </div>
 
         </div>
+        </form>
     )
 }
 
