@@ -8,6 +8,7 @@ import { ForgotPassword } from "./Pages/ForgotPassword/forgotPassword";
 import { NotFound } from "./NotFound";
 import { VerifyEmail } from "./Pages/VerifyEmail/verify_email";
 import ErrorPage from "./ErrorPage";
+import { LearnUseEffect } from "./LearnUseEffect";
 
 
 export const router = createBrowserRouter([
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
             {
                 path: "/forgot-password",
                 element: <ForgotPassword />,
+            },
+            {
+                path: "/learn-use-effect",
+                element: <LearnUseEffect />,
             },
         ],
     },
