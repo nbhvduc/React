@@ -2,7 +2,9 @@
 import { useState } from "react";
 import { useLocation, useNavigate} from "react-router";
 
-
+type AppError = {
+    message: string
+} 
 
 export function VerifyEmail(){
     
@@ -41,15 +43,10 @@ export function VerifyEmail(){
                 return; 
             }
             
-            
-            
         }catch(error){
-            console.log(error)
-            setErrorMessage("サーバーに接続できませんでした");
-
-        }finally{
+            setErrorMessage(error?.message ?? "Server error");
+        } finally {
             setLoading(false);
-
         }
     }
 
@@ -86,7 +83,14 @@ export function VerifyEmail(){
         
     }
 
-        
+    function handleCodeChange(event: any)  {
+        const value = event.target.value
+        if (value.length > 5) {
+            return
+        }
+
+        setCode(value)
+    }
         
     return(
        <form onSubmit={(e)=>{
@@ -101,11 +105,11 @@ export function VerifyEmail(){
              
             <div>
                 <input id="code"
-                    type="text"
-                    value={code} onChange={(e)=>setCode(e.target.value)}/>
+                    type="number"
+                    value={code} onChange={handleCodeChange}/>
             </div>
 
-            {ErrorMessage&& <p style={{ color:"red"}}>{ErrorMessage}</p>}
+            {ErrorMessage && <p style={{ color:"red"}}>{ErrorMessage}</p>}
 
 
             <div>
