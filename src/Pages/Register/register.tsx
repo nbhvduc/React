@@ -57,9 +57,11 @@ export function Register() {
            
             navigate('/verify_email',{state:{email}})
 
-        } catch (err) {
-            console.error(err);
-            setErrorMessage("サーバーに接続できませんでした");
+        } catch (error) {
+            console.error(error)
+           if(error instanceof Error){
+            setErrorMessage(error.message)
+           }
 
         } finally {
             setLoading(false);

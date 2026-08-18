@@ -46,9 +46,11 @@ export function InputOTP(){
              navigate("/CreateNewPassword",{state:data.reset_token})
              
 
-        }catch(err){
-            console.log(err);
-            setErrorMessage("サーバーに接続できませんでした")
+        }catch(error){
+           console.error(error)
+           if(error instanceof Error){
+            setErrorMessage(error.message)
+           }
         }finally{
             setLoading(false)
         }
@@ -71,20 +73,31 @@ export function InputOTP(){
                     }
                     
                 );
-                navigate("/")
+                navigate("/CreateNewPassword")
                 const data=await response.json();
                 if(!response.ok){
                     setErrorMessage(data.detail);
                     return;
 
                 };
-            }catch(err){
-                console.log(err);
-                setErrorMessage("サーバーに接続できませんでした")
+            }catch(error){
+                console.error(error)
+                if(error instanceof Error ){
+                    setErrorMessage(error.message)
+                }
             }finally{
                 setLoading(false)
             };
 
+        }
+
+
+        function handleCodeCheck(even:any){
+            const value=even.target.value
+            if(value.length>5){
+                return;
+            }
+            setCode(value)
         }
     
 
@@ -102,8 +115,8 @@ export function InputOTP(){
                 <div>
                     <label htmlFor="code"></label>
                     <input id="code"
-                    type="text"
-                    value={code} onChange={(e)=> setCode (e.target.value)}></input>
+                    type="number"
+                    value={code} onChange={handleCodeCheck}></input>
 
                 </div>
                 {ErrorMessage &&<p style={{color:"red"}}>{ErrorMessage}</p>}

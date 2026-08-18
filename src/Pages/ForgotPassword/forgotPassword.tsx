@@ -44,9 +44,11 @@ export function ForgotPasswordPage(){
             }
             navigate("/inputOTP",{state:{email}})
             
-        }catch(err){
-            console.log(err)
-            setErrorMessage("サーバーに接続できませんでした")
+        }catch(error){
+         console.error(error)
+         if(error instanceof Error){
+            setErrorMessage(error.message)
+         }
         }finally{
             setLoading(false)
 
@@ -78,7 +80,7 @@ export function ForgotPasswordPage(){
                 </div>
 
              
-              
+              {ErrorMessage && <p style={{color:"red"}}>{ErrorMessage}</p>}
 
 
 

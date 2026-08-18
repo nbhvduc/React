@@ -53,9 +53,11 @@ export function CreateNewPassword(){
 
             };
             navigate("/login")
-        }catch(err){
-            console.log(err);
-            setErrorMessage("サーバーに接続できませんでした")
+        }catch(error){
+            console.error(error)
+            if(error instanceof Error){
+                setErrorMessage(error.message)
+            }
         }finally{
             setLoading(false)
         }

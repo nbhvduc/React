@@ -44,8 +44,12 @@ export function VerifyEmail(){
             
             
         }catch(error){
-            console.log(error)
-            setErrorMessage("サーバーに接続できませんでした");
+            console.error(error)
+
+            if(error instanceof Error){
+                setErrorMessage(error.message)
+            }
+           
 
         }finally{
             setLoading(false);
@@ -79,12 +83,28 @@ export function VerifyEmail(){
             navigate("/login")
 
         }catch(error){
-            console.log(error)
+            console.error(error)
+           if(error instanceof Error){
+            setErrorMessage(error.message)
+           }
         }finally{
             setLoading(false)
         };
         
     }
+
+
+    function handleCodeCheck(even:any){
+        const value =even.target.value
+        if(value.length>5){
+        return;
+    
+    }
+    setCode(value)
+
+
+    }
+   
 
         
         
@@ -101,8 +121,8 @@ export function VerifyEmail(){
              
             <div>
                 <input id="code"
-                    type="text"
-                    value={code} onChange={(e)=>setCode(e.target.value)}/>
+                    type="number"
+                    value={code} onChange={handleCodeCheck}/>
             </div>
 
             {ErrorMessage&& <p style={{ color:"red"}}>{ErrorMessage}</p>}
