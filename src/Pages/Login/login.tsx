@@ -1,117 +1,128 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
-import { Eye, EyeOff } from "lucide-react" 
+import "./login.css";
 
 export function Login() {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [loading, setLoading] = useState(false)
-    const[ErrorMessage,setErrorMessage]=useState("")
-    const[showPassword,setShowPassword]=useState(false)
-    const navigate=useNavigate()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [ErrorMessage, setErrorMessage] = useState("");
+  const [showPassword, setShowPassword] = useState("password");
+  const navigate = useNavigate();
 
+  async function handleLogin() {
+    setLoading(true);
 
-    async function handleLogin() {  
-        setLoading(true);
+    try {
+      const response = await fetch("http://127.0.0.1:8000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
 
-        try {
-            const response = await fetch(
-                "http://127.0.0.1:8000/auth/login",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        password: password
-                    }),
+      const data = await response.json();
 
-                }
-            );
+      if (!response.ok) {
+        setErrorMessage(data.detail);
+        return;
+      }
 
-             const data = await response.json();
-
-
-            if (!response.ok) {
-                setErrorMessage(data.detail);
-                return;
-                
-            };
-
-            // navigate
-            navigate("/Menu")
-           
-
-        } catch (error) {
-           console.error(error)
-           if(error instanceof Error){
-            setErrorMessage(error.message)
-           }
-        } finally {
-            setLoading(false)
-        };
+      // navigate
+      navigate("/useEffect");
+    } catch (error) {
+      console.error(error);
+      if (error instanceof Error) {
+        setErrorMessage(error.message);
+      }
+    } finally {
+      setLoading(false);
     }
+  }
 
-   
-    
+  function handleShowPassword() {
+    if (showPassword === "text") {
+      setShowPassword("password");
+    } else {
+      setShowPassword("text");
+    }
+  }
 
-    return (
-        <form onSubmit={(e)=>{
-            e.preventDefault();
-            handleLogin();
-        }}>
-        <div>
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleLogin();
+      }}
+    >
+      <div>
+        <h2 className="title">勤怠管理アプリ</h2>
+      </div>
+      <div className="login-container">
+        <div className="login-box">
+          <div className="content-box">
             <div>
-                <h1>勤怠管理アプリ</h1>
-                <p>ログイン</p>
+              <p className="content">ログイン</p>
+            </div>
+            <div>
+              <div className="mail">メール</div>
+              <input
+                className="input-content-mail"
+                id="email"
+                type="text"
+                placeholder="メールを入力してください"
+                onFocus={(e) => (e.target.placeholder = "")}
+                onBlur={(e) =>
+                  (e.target.placeholder = "メールを入力してください")
+                }
+                name="email"
+                autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div>
+              <div className="password">パスワード</div>
+              <input
+                className="input-content-password"
+                id="password"
+                type={showPassword}
+                placeholder="パスワードを入力してください"
+                onFocus={(e) => (e.target.placeholder = "")}
+                onBlur={(e) =>
+                  (e.target.placeholder = "パスワードを入力してください")
+                }
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <div className="button-show-password">
+                <button onClick={handleShowPassword}>
+                  パスワードを表示する
+                </button>
+              </div>
             </div>
 
-            <div>
-                <label htmlFor="email">メール</label>
-                <input id="email"
-                    type="text"
-                    placeholder="yamada@example.com"
-                    onFocus={(e)=>e.target.placeholder=""}
-                    onBlur={(e)=>e.target.placeholder="yamada@example.com"}
-                    name="email"
-                    autoComplete="email"
-                    value={email} onChange={(e) => setEmail(e.target.value)} />
-            </div>
-            <div style={{position:"relative",display:"inline-block"}}>
-                <label htmlFor="password">パスワード</label>
-                <input id="password"
-                    type={showPassword?"text":"password"}
-                    placeholder="........"
-                    onFocus={(e)=>e.target.placeholder=""}
-                    onBlur={(e)=>e.target.placeholder="......."}
-                    value={password} onChange={(e) => setPassword(e.target.value)} />
-                    <button 
-                    type="button"
-                    onClick={()=>setShowPassword((prev)=>!prev)}
-                    style={{position:"absolute",right:8,top:"50%",transform:"translateY(-50%)"}}>
-                        {showPassword ?<EyeOff size={8}/>:<Eye size={8}/>}
-                    </button>
-               
-            </div> 
+            {ErrorMessage && <p style={{ color: "red" }}>{ErrorMessage}</p>}
 
-            {ErrorMessage && <p style={{color:"red"}}>{ErrorMessage}</p>}
-
-            <button type="submit" disabled={loading}>
-                {loading ? "ログイン..." : "ログイン"}
+            <button className="button-login" type="submit" disabled={loading}>
+              {loading ? "ログイン..." : "ログイン"}
             </button>
 
-            <div>
-                <Link to="/forgot-password">パスワードを忘れた方</Link>
+            <div className="link-forgot-password">
+              <Link to="/forgot-password">パスワードを忘れた方</Link>
             </div>
 
-            <div>
-                <Link to={"/register"}>社員登録</Link>
+            <div className="link-register">
+              <Link to={"/register"}>社員登録</Link>
             </div>
-
+          </div>
         </div>
-        </form>
-    )
+      </div>
+    </form>
+  );
 }
-

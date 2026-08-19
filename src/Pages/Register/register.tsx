@@ -1,153 +1,185 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router";
-import { Eye,EyeOff } from "lucide-react";
+import "./register.css";
 
 export function Register() {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [loading, setLoading] = useState(false)
-    const[confirmPassword,setConfirmPassword]=useState("")
-    const[ErrorMessage,setErrorMessage]=useState("")
-    const [showPassword,setShowPassword]=useState(false)
-    const[showConfrmPassword,setShowConfirmPassword]=useState(false)
-  
-    const navigate = useNavigate()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [ErrorMessage, setErrorMessage] = useState("");
+  const [showPassword, setShowPassword] = useState("password");
+  const [showConfrmPassword, setShowConfirmPassword] = useState("password");
 
-    
-    async function handleRegister() {
-        setLoading(true);
+  const navigate = useNavigate();
 
-        if (password!==confirmPassword){
-        setErrorMessage("パスワードが一致しません");
-        setLoading(false)
-        return; /// Dừng ngay và không gọi API
-        }
+  async function handleRegister() {
+    setLoading(true);
 
-        
-
-        /// Clear lỗi cũ nếu có
-        setErrorMessage("")
-
-
-        try {
-            const response = await fetch(
-                "http://127.0.0.1:8000/auth/register",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        
-                        email: email,
-                        password: password,
-                        confirm_password:confirmPassword
-
-                    }),
-                }
-            );
-
-            const data = await response.json();
-
-            if (!response.ok) {
-               setErrorMessage(data.detail);
-               return;
-            }
-            // dang ky thanh cong, chuyen trang neu muon
-           
-            navigate('/verify_email',{state:{email}})
-
-        } catch (error) {
-            console.error(error)
-           if(error instanceof Error){
-            setErrorMessage(error.message)
-           }
-
-        } finally {
-            setLoading(false);
-
-        }
+    if (password !== confirmPassword) {
+      setErrorMessage("パスワードが一致しません");
+      setLoading(false);
+      return; /// Dừng ngay và không gọi API
     }
 
-        
-    
-    
+    /// Clear lỗi cũ nếu có
+    setErrorMessage("");
 
-    return (
-        <form onSubmit={(e)=>{
-            e.preventDefault();
-            handleRegister();
-        }}>
-        <div >
-            <div>
-                <h2>勤怠管理アプリ</h2>
-                <p>社員登録</p>
+    try {
+      const response = await fetch("http://127.0.0.1:8000/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+          confirm_password: confirmPassword,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setErrorMessage(data.detail);
+        return;
+      }
+      // dang ky thanh cong, chuyen trang neu muon
+
+      navigate("/verify_email", { state: { email } });
+    } catch (error) {
+      console.error(error);
+      if (error instanceof Error) {
+        setErrorMessage(error.message);
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function handleShowPassword(e: any) {
+    e.preventDefault();
+    if (showPassword === "text") {
+      setShowPassword("password");
+    } else {
+      setShowPassword("text");
+    }
+  }
+  function handleShowComfirmPassord(e: any) {
+    e.preventDefault();
+    if (showConfrmPassword === "text") {
+      setShowConfirmPassword("password");
+    } else {
+      setShowConfirmPassword("text");
+    }
+  }
+
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleRegister();
+      }}
+    >
+      <div>
+        <h2 className="title">勤怠管理アプリ</h2>
+      </div>
+      <div className="register-container">
+        <div className="register-box">
+          <div className="content-box">
+            <div className="content">
+              <p>社員登録</p>
             </div>
 
             <div>
-                <label htmlFor="email">メール</label>
-                <input id="email"
-                    type="text"
-                    placeholder="yamada@example.com"
-                    onFocus={(e)=>e.target.placeholder=""}
-                    onBlur={(e)=>e.target.placeholder="yamada@example.com"}
-                    name="email"
-                    autoComplete="email"
-                    value={email} onChange={(e) => setEmail(e.target.value)} />
+              <div className="mail-css">
+                <div className="mail">メール</div>
+                <span className="required-tag-email">*必須 </span>
+              </div>
+
+              <input
+                className="input-content-mail"
+                id="email"
+                type="text"
+                placeholder="メールを入力してください"
+                onFocus={(e) => (e.target.placeholder = "")}
+                onBlur={(e) =>
+                  (e.target.placeholder = "メールを入力してください")
+                }
+                name="email"
+                autoComplete="on"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
-
-            <div style={{position:"relative",flexDirection:"column",display:"inline-block"}}>
-                <label htmlFor="password">パスワード</label>
-                <input id="password"
-                    type={showPassword? "text":"password"}
-                    placeholder="......"
-                    onFocus={(e)=>e.target.placeholder=""}
-                    onBlur={(e)=>e.target.placeholder="......"}
-                    value={password} onChange={(e) => setPassword(e.target.value)} />
-                    < button 
-                    type="button" 
-                    onClick={()=>setShowPassword((prev)=>!prev)}
-                    style={{position:"absolute",right:10,top:"50%",transform:"translateY(-50%)"}}>
-                        {showPassword?<Eye size={8}/>:<EyeOff size={8}/>}
-                    </button>
-                    
-                   
-                    
-
-
-            </div> 
-
-            <div style={{position:"relative",display:"inline-block",flexDirection:"column"}}>   
-                <label htmlFor="confirm-password">パスワード確認</label>
-                <input id="confirm-password"
-                type={showConfrmPassword?"text":"password"}
-                   placeholder="......"
-                    onFocus={(e)=>e.target.placeholder=""}
-                    onBlur={(e)=>e.target.placeholder="......"}
-                    value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)}/>
-                    <button 
-                    type="button"
-                    onClick={()=>setShowConfirmPassword((prev)=>!prev)}
-                    style={{position:"absolute",right:8,top:"50%",transform:"translateY(-50%)"}}>
-                        {showConfrmPassword?<Eye size={8}/>:<EyeOff size={8}/>}
-                    </button>
+            <div className="password-css">
+              <div className="password">パスワード</div>
+              <span className="required-tag-password">*必須</span>
             </div>
-            
-            {ErrorMessage&& <p style={{color:"red"}}>{ErrorMessage}</p>}
-
-            <div>
-                <button type="submit" disabled={loading}>
-                    {loading ? "登録処理... " : "会員登録"}</button>
-            </div>    
-                
-
-            <div>
-
-                <Link to="/login">ログイン</Link>
+            <div className="password-container">
+              <input
+                className="input-content-password"
+                id="password"
+                type={showPassword}
+                placeholder="パスワードを入力してください"
+                onFocus={(e) => (e.target.placeholder = "")}
+                onBlur={(e) =>
+                  (e.target.placeholder = "パスワードを入力してください")
+                }
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <div className="button-container">
+                <button
+                  className="button-show-password"
+                  onClick={handleShowPassword}
+                >
+                  パスワードを表示する
+                </button>
+              </div>
             </div>
+            <div className="confirm-password-css">
+              <div className="confirm-password">パスワード確認</div>
+              <span className="required-tag-confirm-password">*必須</span>
+            </div>
+            <input
+              className="input-content-confirm-password"
+              id="confirm-password"
+              type={showConfrmPassword}
+              placeholder="パスワード確認"
+              onFocus={(e) => (e.target.placeholder = "")}
+              onBlur={(e) => (e.target.placeholder = "パスワード確認")}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+
+            <div className="button-container">
+              <button
+                className="button-show-confirm-password"
+                onClick={handleShowComfirmPassord}
+              >
+                パスワードを表示する
+              </button>
+            </div>
+          </div>
+
+          {ErrorMessage && <p style={{ color: "red" }}>{ErrorMessage}</p>}
+
+          <div>
+            <button
+              className="button-register"
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? "登録処理... " : "会員登録"}
+            </button>
+          </div>
+
+          <div>
+            <Link to="/login">ログイン</Link>
+          </div>
         </div>
-        </form>
-    )
-    
+      </div>
+    </form>
+  );
 }
-
