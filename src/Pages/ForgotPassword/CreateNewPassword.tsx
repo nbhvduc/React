@@ -12,6 +12,10 @@ export function CreateNewPassword() {
   const [showConfirmNewPassword, setShowConfirmNewPassword] =
     useState("password");
 
+  const hasEnoughCharacters = newpassword.length >= 6
+  const hasLetter = /[a-zA-Z]/.test(newpassword);
+  const hasNumber = /[0-9]/.test(newpassword)
+
   const Location = useLocation();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -111,6 +115,18 @@ export function CreateNewPassword() {
             </div>
           </div>
 
+          {/**     
+           "" => false, newpassword-> "" -> false
+          "223" => true, newpassword -> "334" -> true, hasEnoughCharacters -> false, !hasEnoughCharacters -> true
+          /}
+
+          {/** show lỗi nhập password */}
+          <div>
+            {newpassword && !hasEnoughCharacters && <p style={{ color: "red" }}>Mật khẩu phải có ít nhất 6 ký tự</p>}
+            {newpassword && !hasLetter && <p style={{ color: "red" }}>Mật khẩu phải có ít nhất 1 ký tự là chữ</p>}
+            {newpassword && !hasNumber && <p style={{ color: "red" }}>Mật khẩu phải có ít nhất 1 ký tự là số</p>}
+          </div>
+
           <div>
             <div>新しいパスワード確認</div>
             <input
@@ -134,6 +150,9 @@ export function CreateNewPassword() {
 
           {ErrorMessage && <p style={{ color: "red" }}>{ErrorMessage}</p>}
 
+          <div>
+            <p>Mat khau phai co it nhất 6 ký tự, và gồm số và chữ</p>
+          </div>
           <button type="submit" disabled={loading}>
             {loading ? "確認中..." : "完了"}
           </button>
