@@ -86,12 +86,14 @@ body {
   border-radius: 4px;
   margin: 4px;
 }
-.button-show-password,
-.button-show-confirm-password {
-  border-radius: 4px;
-  color: rgb(201, 62, 122);
-  margin-top: 8px;
-  margin-bottom: 8px;
+.checkbox-confirm-password,
+.checkbox-password {
+  font-size: 16px;
+  color: red;
+  display: flex;
+  margin-left: 14px;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 .button-register {
   height: 40px;

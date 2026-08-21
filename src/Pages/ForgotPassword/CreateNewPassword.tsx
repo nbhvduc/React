@@ -8,9 +8,8 @@ export function CreateNewPassword() {
   const [newpassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [ErrorMessage, setErrorMessage] = useState("");
-  const [showNewPassword, setShowNewPassword] = useState("password");
-  const [showConfirmNewPassword, setShowConfirmNewPassword] =
-    useState("password");
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
 
   const Location = useLocation();
   const [loading, setLoading] = useState(false);
@@ -62,21 +61,11 @@ export function CreateNewPassword() {
   }
 
   function handleShowNewPassword(e: any) {
-    e.preventDefault();
-    if (showNewPassword === "text") {
-      setShowNewPassword("password");
-    } else {
-      setShowNewPassword("text");
-    }
+    setShowNewPassword(e.target.checked);
   }
 
   function handleShowComfirmNewPassord(e: any) {
-    e.preventDefault();
-    if (showConfirmNewPassword === "text") {
-      setShowConfirmNewPassword("password");
-    } else {
-      setShowConfirmNewPassword("text");
-    }
+    setShowConfirmNewPassword(e.target.checked);
   }
   return (
     <form
@@ -85,7 +74,7 @@ export function CreateNewPassword() {
         handleCreateNewPassword();
       }}
     >
-      <h2 className="title">勤怠管理アプリ</h2>
+      <h2 className="title-new-password">勤怠管理アプリ</h2>
       <div className="create-password-box">
         <div className="content-box">
           <div>
@@ -95,7 +84,7 @@ export function CreateNewPassword() {
             <div>新しいパスワード</div>
             <input
               id="newpassword"
-              type={showNewPassword}
+              type={showNewPassword ? "text" : "password"}
               placeholder="新しいパスワード入力してください"
               onFocus={(e) => (e.target.placeholder = "")}
               onBlur={(e) =>
@@ -105,9 +94,14 @@ export function CreateNewPassword() {
               onChange={(e) => setNewPassword(e.target.value)}
             />
             <div>
-              <button onClick={handleShowNewPassword}>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={showNewPassword}
+                  onChange={handleShowNewPassword}
+                />
                 パスワードを表示する
-              </button>
+              </label>
             </div>
           </div>
 
@@ -115,7 +109,7 @@ export function CreateNewPassword() {
             <div>新しいパスワード確認</div>
             <input
               id="confirm-password"
-              type={showConfirmNewPassword}
+              type={showConfirmNewPassword ? "text" : "password"}
               value={confirmNewPassword}
               placeholder="もう一度入力してください"
               onFocus={(e) => (e.target.placeholder = "")}
@@ -127,9 +121,14 @@ export function CreateNewPassword() {
           </div>
 
           <div>
-            <button onClick={handleShowComfirmNewPassord}>
+            <label>
+              <input
+                type="checkbox"
+                checked={showConfirmNewPassword}
+                onChange={handleShowComfirmNewPassord}
+              />
               パスワードを表示する
-            </button>
+            </label>
           </div>
 
           {ErrorMessage && <p style={{ color: "red" }}>{ErrorMessage}</p>}
