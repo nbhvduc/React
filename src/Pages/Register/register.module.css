@@ -1,0 +1,137 @@
+*,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.register-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 10px;
+  height: 100%;
+}
+
+.register-box {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 400px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 20px rgba(232, 4, 4, 0.08);
+  text-align: center;
+  border: 1 solid #e0e0e0;
+  margin: 50px;
+  margin-bottom: 15px;
+  background: none;
+  width: 380px;
+}
+
+.title {
+  color: rgb(246, 7, 47);
+  background: #7bfdb1;
+  height: 50px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding-left: 20px;
+  left: 0;
+  right: 0;
+  flex: 1;
+  justify-content: center;
+}
+.content-box {
+  text-align: center;
+  border-radius: 12px;
+  background-color: aliceblue;
+  width: 95%;
+  height: 80%;
+}
+.content {
+  color: rgb(216, 26, 26);
+  margin: 12px;
+}
+.mail {
+  text-align: left;
+  color: black;
+  margin: 4px;
+}
+.input-content-mail {
+  width: 90%;
+  height: 30px;
+  border-radius: 4px;
+  margin: 4px;
+}
+.password {
+  text-align: left;
+  color: black;
+  margin: 4px;
+}
+.input-content-password {
+  width: 90%;
+  height: 30px;
+  border-radius: 4px;
+  margin: 4px;
+}
+.confirm-password {
+  text-align: left;
+  color: black;
+  margin: 4px;
+}
+.input-content-confirm-password {
+  width: 90%;
+  height: 30px;
+  border-radius: 4px;
+  margin: 4px;
+}
+.button-show-password,
+.button-show-confirm-password {
+  border-radius: 4px;
+  color: rgb(201, 62, 122);
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.button-register {
+  height: 40px;
+  width: 90%;
+  background-color: #7bfdb1;
+  margin: 10px;
+  font-size: 100%;
+}
+.password-container {
+  margin: 0 auto;
+}
+.button-container {
+  width: 90%;
+  margin: 0 auto;
+  text-align: left;
+}
+.mail-css {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.required-tag-email {
+  font-size: 14px;
+  color: red;
+}
+.password-css {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.required-tag-password {
+  font-size: 14px;
+  color: red;
+}
+.confirm-password-css {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.required-tag-confirm-password {
+  font-size: 14px;
+  color: red;
+}
