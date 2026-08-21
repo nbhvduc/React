@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router";
-import "./register.module.css";
+import "./register.css";
 
 export function Register() {
   const [email, setEmail] = useState("");
@@ -8,8 +8,8 @@ export function Register() {
   const [loading, setLoading] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [ErrorMessage, setErrorMessage] = useState("");
-  const [showPassword, setShowPassword] = useState("password");
-  const [showConfrmPassword, setShowConfirmPassword] = useState("password");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfrmPassword, setShowConfirmPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -58,20 +58,10 @@ export function Register() {
   }
 
   function handleShowPassword(e: any) {
-    e.preventDefault();
-    if (showPassword === "text") {
-      setShowPassword("password");
-    } else {
-      setShowPassword("text");
-    }
+    setShowPassword(e.target.checked);
   }
   function handleShowComfirmPassord(e: any) {
-    e.preventDefault();
-    if (showConfrmPassword === "text") {
-      setShowConfirmPassword("password");
-    } else {
-      setShowConfirmPassword("text");
-    }
+    setShowConfirmPassword(e.target.checked);
   }
 
   return (
@@ -120,7 +110,7 @@ export function Register() {
               <input
                 className="input-content-password"
                 id="password"
-                type={showPassword}
+                type={showPassword ? "text" : "password"}
                 placeholder="パスワードを入力してください"
                 onFocus={(e) => (e.target.placeholder = "")}
                 onBlur={(e) =>
@@ -129,13 +119,13 @@ export function Register() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <div className="button-container">
-                <button
-                  className="button-show-password"
-                  onClick={handleShowPassword}
-                >
-                  パスワードを表示する
-                </button>
+              <div className="type-character-password">
+                <input
+                  type="checkbox"
+                  checked={showPassword}
+                  onChange={handleShowPassword}
+                />
+                パスワードを表示する
               </div>
             </div>
             <div className="confirm-password-css">
@@ -145,7 +135,7 @@ export function Register() {
             <input
               className="input-content-confirm-password"
               id="confirm-password"
-              type={showConfrmPassword}
+              type={showConfrmPassword ? "text" : "password"}
               placeholder="パスワード確認"
               onFocus={(e) => (e.target.placeholder = "")}
               onBlur={(e) => (e.target.placeholder = "パスワード確認")}
@@ -153,13 +143,13 @@ export function Register() {
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
 
-            <div className="button-container">
-              <button
-                className="button-show-confirm-password"
-                onClick={handleShowComfirmPassord}
-              >
-                パスワードを表示する
-              </button>
+            <div className="type-character-confirm-password">
+              <input
+                type="checkbox"
+                checked={showConfrmPassword}
+                onChange={handleShowComfirmPassord}
+              />
+              パスワードを表示する
             </div>
           </div>
 
@@ -176,6 +166,7 @@ export function Register() {
           </div>
 
           <div>
+            <span className="plain-text">アカウントをお持ちですか？</span>
             <Link to="/login">ログイン</Link>
           </div>
         </div>

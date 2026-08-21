@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
-import "./login.module.css";
+import "./login.css";
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [ErrorMessage, setErrorMessage] = useState("");
-  const [showPassword, setShowPassword] = useState("password");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   async function handleLogin() {
@@ -45,12 +45,8 @@ export function Login() {
     }
   }
 
-  function handleShowPassword() {
-    if (showPassword === "text") {
-      setShowPassword("password");
-    } else {
-      setShowPassword("text");
-    }
+  function handleShowPassword(e: any) {
+    setShowPassword(e.target.checked);
   }
 
   return (
@@ -91,7 +87,7 @@ export function Login() {
               <input
                 className="input-content-password"
                 id="password"
-                type={showPassword}
+                type={showPassword ? "text" : "password"}
                 placeholder="パスワードを入力してください"
                 onFocus={(e) => (e.target.placeholder = "")}
                 onBlur={(e) =>
@@ -100,24 +96,30 @@ export function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <div className="button-show-password">
-                <button onClick={handleShowPassword}>
-                  パスワードを表示する
-                </button>
+
+              <div className="type-characters">
+                <input
+                  className="button-check"
+                  type="checkbox"
+                  checked={showPassword}
+                  onChange={handleShowPassword}
+                />
+                パスワードを表示する
               </div>
             </div>
 
             {ErrorMessage && <p style={{ color: "red" }}>{ErrorMessage}</p>}
 
-            <button className="button-login" type="submit" disabled={loading}>
-              {loading ? "ログイン..." : "ログイン"}
-            </button>
-
             <div className="link-forgot-password">
               <Link to="/forgot-password">パスワードを忘れた方</Link>
             </div>
 
+            <button className="button-login" type="submit" disabled={loading}>
+              {loading ? "ログイン..." : "ログイン"}
+            </button>
+
             <div className="link-register">
+              <p className="plain-text-login">アカウントをお持ちでない方?</p>
               <Link to={"/register"}>社員登録</Link>
             </div>
           </div>
