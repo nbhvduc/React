@@ -26,7 +26,7 @@ body {
   margin: 50px;
   margin-bottom: 15px;
   background: none;
-  width: 380px;
+  width: 420px;
 }
 
 .title {
@@ -89,7 +89,7 @@ body {
 .checkbox-confirm-password,
 .checkbox-password {
   font-size: 16px;
-  color: red;
+  color: black;
   display: flex;
   margin-left: 14px;
   margin-top: 4px;

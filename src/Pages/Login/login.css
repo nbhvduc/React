@@ -39,7 +39,7 @@ body {
   margin: 50px;
   margin-bottom: 15px;
   background: none;
-  width: 380px;
+  width: 420px;
 }
 .content-box {
   text-align: center;
@@ -76,7 +76,7 @@ body {
 }
 .check-box-password-login {
   font-size: 16px;
-  color: red;
+  color: black;
   display: flex;
   margin-left: 14px;
   margin-top: 4px;
@@ -97,4 +97,16 @@ body {
   margin-bottom: 10px;
   text-align: right;
   margin-right: 20px;
+}
+.check-password {
+  font-size: 14px;
+  justify-self: left;
+  margin-left: 10px;
+  margin-top: 6px;
+}
+.password-rule {
+  font-size: 16px;
+  color: red;
+  line-height: 1.6;
+  margin: 5px 0 10px;
 }

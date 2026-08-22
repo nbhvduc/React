@@ -11,6 +11,8 @@ export function VerifyEmail() {
   const location = useLocation();
   const email = location.state?.email ?? "";
 
+  
+
   async function handleVerifyEmail() {
     setLoading(true);
     try {

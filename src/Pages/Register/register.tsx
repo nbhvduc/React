@@ -11,6 +11,11 @@ export function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfrmPassword, setShowConfirmPassword] = useState(false);
 
+  const hasEnoughCharacters = password.length < 8 || password.length > 20;
+  const hasLesster = /[a-zA-Z]/.test(password);
+  const hasNumber = /[0-9]/.test(password);
+  const hasSpace = /\s/.test(password);
+
   const navigate = useNavigate();
 
   async function handleRegister() {
@@ -71,12 +76,12 @@ export function Register() {
         handleRegister();
       }}
     >
-      <div>
-        <h2 className="title">勤怠管理アプリ</h2>
-      </div>
       <div className="register-container">
         <div className="register-box">
           <div className="content-box">
+            <div>
+              <h3 className="title">勤怠管理アプリ</h3>
+            </div>
             <div className="content">
               <p>社員登録</p>
             </div>
@@ -119,7 +124,28 @@ export function Register() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <div className="">
+              <div className="check-password">
+                {password && hasEnoughCharacters && (
+                  <p style={{ color: "red" }}>
+                    *8文字以上20文字以内で入力してください。
+                  </p>
+                )}
+                {password && !hasLesster && (
+                  <p style={{ color: "red" }}>
+                    *英字を1文字以上含めてください。
+                  </p>
+                )}
+                {password && !hasNumber && (
+                  <p style={{ color: "red" }}>
+                    *数字を1文字以上含めてください。
+                  </p>
+                )}
+                {password && hasSpace && (
+                  <p style={{ color: "red" }}>スペースは使用できません。</p>
+                )}
+              </div>
+
+              <div>
                 <label className="checkbox-password">
                   <input
                     type="checkbox"
