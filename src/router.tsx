@@ -10,6 +10,7 @@ import { VerifyEmail } from "./Pages/VerifyEmail/verify_email";
 import ErrorPage from "./ErrorPage";
 import { InputOTP } from "./Pages/ForgotPassword/inputOTP";
 import { CreateNewPassword } from "./Pages/ForgotPassword/CreateNewPassword";
+import { Menu } from "./Pages/Menu/menu";
 
 import { SearchUser } from "./useEffect";
 
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
       {
         path: "/CreateNewPassword",
         element: <CreateNewPassword />,
+      },
+      {
+        path: "/menu",
+        element: <Menu />,
       },
 
       {

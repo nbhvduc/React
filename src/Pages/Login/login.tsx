@@ -56,12 +56,12 @@ export function Login() {
         handleLogin();
       }}
     >
-      <div>
-        <h2 className="title">勤怠管理アプリ</h2>
-      </div>
       <div className="login-container">
         <div className="login-box">
           <div className="content-box">
+            <div>
+              <h2 className="title">勤怠管理アプリ</h2>
+            </div>
             <div>
               <p className="content">ログイン</p>
             </div>
