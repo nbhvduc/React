@@ -1,0 +1,112 @@
+*,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.title {
+  color: rgb(246, 7, 47);
+
+  height: 50px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding-left: 20px;
+  left: 0;
+  right: 0;
+  flex: 1;
+  justify-content: center;
+}
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 10px;
+  height: 100%;
+  flex-direction: column;
+}
+.login-box {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  border-radius: 24px;
+  max-width: 400px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 20px rgba(232, 4, 4, 0.08);
+  text-align: center;
+  border: 1 solid #e0e0e0;
+  margin: 50px;
+  margin-bottom: 15px;
+  background: none;
+  width: 500px;
+}
+.content-box {
+  text-align: center;
+  border-radius: 12px;
+  background-color: aliceblue;
+  width: 95%;
+  height: 80%;
+}
+.content {
+  color: rgb(216, 26, 26);
+  margin: 12px;
+}
+.mail {
+  text-align: left;
+  color: black;
+  margin: 4px;
+}
+.input-content-mail {
+  width: 90%;
+  height: 30px;
+  border-radius: 4px;
+  margin: 4px;
+}
+.password {
+  text-align: left;
+  color: black;
+  margin: 4px;
+}
+.input-content-password {
+  width: 90%;
+  height: 30px;
+  border-radius: 4px;
+  margin: 4px;
+}
+.check-box-password-login {
+  font-size: 16px;
+  color: black;
+  display: flex;
+  margin-left: 14px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.button-login {
+  height: 40px;
+  width: 90%;
+  background-color: #7bfdb1;
+  margin: 10px;
+  font-size: 100%;
+  margin-top: 20px;
+}
+.link-forgot-password,
+.link-register {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: right;
+  margin-right: 20px;
+}
+.check-password {
+  font-size: 14px;
+  justify-self: left;
+  margin-left: 10px;
+  margin-top: 6px;
+}
+.password-rule {
+  font-size: 16px;
+  color: red;
+  line-height: 1.6;
+  margin: 5px 0 10px;
+}

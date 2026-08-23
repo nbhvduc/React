@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  
+}
+.app-content {
+  flex: 1
+}
+.menu {
+  width: 280px;
+  background: yellowgreen;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  transition: all 3ms ease-in-out;
+  transform: translateX(-100%);
+}
+.menu li {
+  cursor: pointer;
+}
+
+.menu-open {
+  transform: translateX(0);
+}
+.close-menu-icon {
+  position: absolute;
+  top: 10px;
+  right: -20px;
+  color: white;
+  cursor: pointer;
+}
+
+.title-menu {
+  color: rgb(246, 7, 47);
+  height: 50px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding-left: 20px;
+  left: 0;
+  right: 0;
+  flex: 1;
+  justify-content: center;
+}
+.header {
+  display: flex;
+  background: #7bfdb1;
+  align-items: center;
+}
+.header img {
+  width: 28px;
+  height: auto;
+  margin-left: 10px;
+  cursor: pointer;
+}
