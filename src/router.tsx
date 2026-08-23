@@ -10,7 +10,7 @@ import { VerifyEmail } from "./Pages/VerifyEmail/verify_email";
 import ErrorPage from "./ErrorPage";
 import { InputOTP } from "./Pages/ForgotPassword/inputOTP";
 import { CreateNewPassword } from "./Pages/ForgotPassword/CreateNewPassword";
-import { Menu } from "./Pages/Menu/menu";
+import { Salary } from "./Salary/Salary";
 
 import { SearchUser } from "./useEffect";
 
@@ -50,10 +50,9 @@ export const router = createBrowserRouter([
         element: <CreateNewPassword />,
       },
       {
-        path: "/menu",
-        element: <Menu />,
+        path: "/salary",
+        element: <Salary />,
       },
-
       {
         path: "/useEffect",
         element: <SearchUser />,
