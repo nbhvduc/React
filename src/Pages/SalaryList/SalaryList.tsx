@@ -12,20 +12,6 @@ export function SalaryList() {
   const email = location.state?.email ?? "";
 
   const years = ["2024", "2025", "2026", "2027", "2028", "2029", "2030"];
-  const months = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "11",
-    "12",
-  ];
 
   function handleDropDown() {
     setIsUserDropDown((prev) => !prev);
@@ -35,8 +21,8 @@ export function SalaryList() {
     navigate("/login");
   }
 
-  function handleSalaryDetail() {
-    navigate("/SalaryDetail");
+  function handleSalaryDetail(month: string) {
+    navigate(`/SalaryDetail/${selectYear}/${month}`);
   }
 
   function handleSelectYear(e: any) {
@@ -137,24 +123,24 @@ export function SalaryList() {
           </div>
           <div className="month-content-box">
             <div>
-              <span>1月</span>
-              <span>2月</span>
-              <span>3月</span>
-            </div>
-            <div className="4-6">
-              <span>4月</span>
-              <span>5月</span>
-              <span>6月</span>
+              <span onClick={() => handleSalaryDetail("1")}>1月</span>
+              <span onClick={() => handleSalaryDetail("2")}>2月</span>
+              <span onClick={() => handleSalaryDetail("3")}>3月</span>
             </div>
             <div>
-              <span>7月</span>
-              <span>8月</span>
-              <span>9月</span>
+              <span onClick={() => handleSalaryDetail("4")}>4月</span>
+              <span onClick={() => handleSalaryDetail("5")}>5月</span>
+              <span onClick={() => handleSalaryDetail("6")}>6月</span>
             </div>
             <div>
-              <span>10月</span>
-              <span>11月</span>
-              <span>12月</span>
+              <span onClick={() => handleSalaryDetail("7")}>7月</span>
+              <span onClick={() => handleSalaryDetail("8")}>8月</span>
+              <span onClick={() => handleSalaryDetail("9")}>9月</span>
+            </div>
+            <div>
+              <span onClick={() => handleSalaryDetail("10")}>10月</span>
+              <span onClick={() => handleSalaryDetail("11")}>11月</span>
+              <span onClick={() => handleSalaryDetail("12")}>12月</span>
             </div>
           </div>
         </div>

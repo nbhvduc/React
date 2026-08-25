@@ -20,6 +20,11 @@ export function Register() {
 
   async function handleRegister() {
     setLoading(true);
+    if (!email || !password) {
+      setErrorMessage("メールとパスワードを入力してください");
+      setLoading(false);
+      return;
+    }
 
     if (password !== confirmPassword) {
       setErrorMessage("パスワードが一致しません");
@@ -47,9 +52,9 @@ export function Register() {
 
       if (!response.ok) {
         setErrorMessage(data.detail);
+
         return;
       }
-      // dang ky thanh cong, chuyen trang neu muon
 
       navigate("/verify_email", { state: { email } });
     } catch (error) {

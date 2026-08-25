@@ -9,10 +9,16 @@ export function Login() {
   const [loading, setLoading] = useState(false);
   const [ErrorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
 
   async function handleLogin() {
     setLoading(true);
+    if (!email || !password) {
+      setErrorMessage("メールとパスワードを入力してください");
+      setLoading(false);
+      return;
+    }
 
     try {
       const response = await fetch("http://127.0.0.1:8000/auth/login", {
@@ -31,18 +37,21 @@ export function Login() {
 
       if (!response.ok) {
         setErrorMessage(data.detail);
+        setLoading(false);
         return;
       }
 
+      setTimeout(() => {
+        navigate("/", { state: { email: email } });
+      }, 2000);
+
       // navigate
-      navigate("/", { state: { email: email } });
     } catch (error) {
       console.error(error);
       if (error instanceof Error) {
         setErrorMessage(error.message);
       }
     } finally {
-      setLoading(false);
     }
   }
 
@@ -116,7 +125,7 @@ export function Login() {
             </button>
 
             <div className="link-forgot-password">
-              <Link to="/forgot-password">パスワードを忘れた方</Link>
+              <Link to={"/forgotPassword"}>パスワードを忘れた方</Link>
             </div>
 
             <div className="link-register">

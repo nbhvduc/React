@@ -10,7 +10,8 @@ import { VerifyEmail } from "./Pages/VerifyEmail/verify_email";
 import ErrorPage from "./ErrorPage";
 import { InputOTP } from "./Pages/ForgotPassword/inputOTP";
 import { CreateNewPassword } from "./Pages/ForgotPassword/CreateNewPassword";
-import { SalaryDetail } from "./SalaryDetail/SalaryDetail";
+import { SalaryDetail } from "./Pages/SalaryDetail/SalaryDetail";
+import { ChangePassword } from "./Pages/ChangePassword/changepassword";
 
 import { SalaryList } from "./Pages/SalaryList/SalaryList";
 
@@ -24,14 +25,22 @@ export const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
+      {
+        path: "/home",
+        element: <Home />,
+      },
 
       {
         path: "/SalaryList",
         element: <SalaryList />,
       },
       {
-        path: "/SalaryDetail",
+        path: "/SalaryDetail/:year/:month",
         element: <SalaryDetail />,
+      },
+      {
+        path: "/changepassword",
+        element: <ChangePassword />,
       },
     ],
   },
@@ -56,7 +65,6 @@ export const router = createBrowserRouter([
     path: "/CreateNewPassword",
     element: <CreateNewPassword />,
   },
-
   {
     path: "/login",
     element: <Login />,

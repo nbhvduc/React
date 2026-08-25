@@ -24,6 +24,14 @@ export function Menu() {
         <ul>
           <li
             onClick={() => {
+              navigate("/home");
+              handleToggleMenu();
+            }}
+          >
+            ホームページ
+          </li>
+          <li
+            onClick={() => {
               navigate("/SalaryList", { state: { email: email } });
               handleToggleMenu();
             }}
@@ -32,17 +40,30 @@ export function Menu() {
           </li>
           <li
             onClick={() => {
-              navigate("/SalaryList", { state: { email } });
+              navigate("/changepassword", { state: { email } });
               handleToggleMenu();
             }}
           >
             パスワード・メールアドレス設定
           </li>
+          <li
+            onClick={() => {
+              navigate("/login");
+              handleToggleMenu();
+            }}
+          >
+            ログアウト
+          </li>
         </ul>
       </div>
 
       <div className="header">
-        <img onClick={handleToggleMenu} src={menuSticker} alt="menu-Sticker" />
+        <img
+          style={{ cursor: "pointer" }}
+          onClick={handleToggleMenu}
+          src={menuSticker}
+          alt="menu-Sticker"
+        />
         <h3 className="title-menu">勤怠管理アプリ</h3>
       </div>
     </div>

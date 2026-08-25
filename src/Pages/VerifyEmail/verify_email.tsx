@@ -5,13 +5,12 @@ import "./verify_email.css";
 export function VerifyEmail() {
   const [code, setCode] = useState("");
   const [ErrorMessage, setErrorMessage] = useState("");
+  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const location = useLocation();
   const email = location.state?.email ?? "";
-
-  
 
   async function handleVerifyEmail() {
     setLoading(true);
@@ -22,6 +21,7 @@ export function VerifyEmail() {
           "Content-type": "application/json",
         },
         body: JSON.stringify({
+          email: email,
           code: code,
         }),
       });
@@ -32,6 +32,15 @@ export function VerifyEmail() {
         setErrorMessage(data.detail);
         return;
       }
+      setTimeout(() => {
+        setMessage("確認中.....");
+      });
+      setTimeout(() => {
+        setMessage("登録が完了しました");
+      }, 3000);
+      setTimeout(() => {
+        navigate("/login");
+      }, 4000);
     } catch (error) {
       console.error(error);
 
@@ -48,7 +57,7 @@ export function VerifyEmail() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/auth/resend_otp_email",
+        "http://127.0.0.1:8000/auth//resend_otp_email",
         {
           method: "POST",
           headers: {
@@ -64,7 +73,7 @@ export function VerifyEmail() {
       if (!response.ok) {
         setErrorMessage(data.detail);
       }
-      navigate("/login");
+      setMessage("認証コードを再送信しました");
     } catch (error) {
       console.error(error);
       if (error instanceof Error) {
@@ -110,6 +119,7 @@ export function VerifyEmail() {
         </div>
 
         {ErrorMessage && <p style={{ color: "red" }}>{ErrorMessage}</p>}
+        {message && <p style={{ color: "blue" }}>{message}</p>}
 
         <div>
           <button className="button-verify" type="submit" disabled={loading}>
