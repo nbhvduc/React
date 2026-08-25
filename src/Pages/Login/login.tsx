@@ -27,6 +27,7 @@ export function Login() {
       });
 
       const data = await response.json();
+      console.log(data);
 
       if (!response.ok) {
         setErrorMessage(data.detail);
@@ -34,7 +35,7 @@ export function Login() {
       }
 
       // navigate
-      navigate("/useEffect");
+      navigate("/", { state: { email: email } });
     } catch (error) {
       console.error(error);
       if (error instanceof Error) {

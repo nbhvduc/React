@@ -1,14 +1,3 @@
-import { useEffect } from "react"
-import { useNavigate } from "react-router"
-
-export const  Home = () => {
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        navigate("/login")
-    }, [navigate])
-
-    return (
-        <div>Welcome to Home Page</div>
-    )
-}
+export const Home = () => {
+  return <div>Welcome to Home Page</div>;
+};
