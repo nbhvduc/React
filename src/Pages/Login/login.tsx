@@ -52,7 +52,7 @@ export function Login() {
         setErrorMessage(error.message);
       }
     } finally {
-    }
+      }
   }
 
   function handleShowPassword(e: any) {
