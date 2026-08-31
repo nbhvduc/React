@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 
 import App from "./App";
+<<<<<<< HEAD
 import { Register } from "./Pages/Register/register";
 import { Login } from "./Pages/Login/login";
 import { Home } from "./Home/home";
@@ -75,3 +76,29 @@ export const router = createBrowserRouter([
     element: <NotFound />,
   },
 ]);
+=======
+import { Register } from "./Register/register";
+import { Login } from "./Login/login";
+
+
+export const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <App />,
+        children: [
+            
+            {
+                path: "/register",
+                element: <Register />,
+            },
+            {
+                path: "/login",
+                element: <Login />,
+            },
+           
+            
+        ],
+    },
+   
+]);
+>>>>>>> register_and_login
