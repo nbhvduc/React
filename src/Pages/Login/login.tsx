@@ -45,7 +45,7 @@ export function Login() {
         navigate("/", { state: { email: email } });
       }, 2000);
 
-      // navigate
+      
     } catch (error) {
       console.error(error);
       if (error instanceof Error) {
