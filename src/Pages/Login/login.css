@@ -39,11 +39,7 @@ body {
   margin: 50px;
   margin-bottom: 15px;
   background: none;
-<<<<<<< HEAD
   width: 500px;
-=======
-  width: 400px;
->>>>>>> error-display
 }
 .content-box {
   text-align: center;
@@ -78,7 +74,6 @@ body {
   border-radius: 4px;
   margin: 4px;
 }
-<<<<<<< HEAD
 .check-box-password-login {
   font-size: 16px;
   color: black;
@@ -86,20 +81,6 @@ body {
   margin-left: 14px;
   margin-top: 4px;
   margin-bottom: 4px;
-=======
-.type-characters {
-  font-size: 16px;
-  color: red;
-  display: flex;
-  margin-left: 14px;
-}
-.type-characters input {
-  height: 16px;
-  width: 16px;
-  align-items: center;
-  display: flex;
-  margin-top: 6px;
->>>>>>> error-display
 }
 
 .button-login {
@@ -118,7 +99,6 @@ body {
   text-align: right;
   margin-right: 20px;
 }
-<<<<<<< HEAD
 .check-password {
   font-size: 14px;
   justify-self: left;
@@ -130,9 +110,4 @@ body {
   color: red;
   line-height: 1.6;
   margin: 5px 0 10px;
-=======
-.plain-text-login {
-  font-size: 18px;
-  color: red;
->>>>>>> error-display
 }

@@ -190,47 +190,6 @@ export function Register() {
             {ErrorMessage && <p style={{ color: "red" }}>{ErrorMessage}</p>}
 
             <div>
-              <button
-                className="button-register"
-                type="submit"
-                disabled={loading}
-              >
-                {loading ? "登録処理... " : "会員登録"}
-              </button>
-              <div className="type-character-password">
-                <input
-                  type="checkbox"
-                  checked={showPassword}
-                  onChange={handleShowPassword}
-                />
-                パスワードを表示する
-              </div>
-            </div>
-            <div className="confirm-password-css">
-              <div className="confirm-password">パスワード確認</div>
-              <span className="required-tag-confirm-password">*必須</span>
-            </div>
-            <input
-              className="input-content-confirm-password"
-              id="confirm-password"
-              type={showConfrmPassword ? "text" : "password"}
-              placeholder="パスワード確認"
-              onFocus={(e) => (e.target.placeholder = "")}
-              onBlur={(e) => (e.target.placeholder = "パスワード確認")}
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-
-            <div className="type-character-confirm-password">
-              <input
-                type="checkbox"
-                checked={showConfrmPassword}
-                onChange={handleShowComfirmPassord}
-              />
-              パスワードを表示する
-            </div>
-
-            <div>
               <Link to="/login">ログイン</Link>
             </div>
             {ErrorMessage && <p style={{ color: "red" }}>{ErrorMessage}</p>}

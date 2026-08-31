@@ -26,12 +26,7 @@ body {
   margin: 50px;
   margin-bottom: 15px;
   background: none;
-<<<<<<< HEAD
   width: 420px;
-=======
-  width: 380px;
-  height: 490px;
->>>>>>> error-display
 }
 
 .title {
@@ -91,7 +86,6 @@ body {
   border-radius: 4px;
   margin: 4px;
 }
-<<<<<<< HEAD
 .checkbox-confirm-password,
 .checkbox-password {
   font-size: 16px;
@@ -100,16 +94,6 @@ body {
   margin-left: 14px;
   margin-top: 4px;
   margin-bottom: 4px;
-=======
-.type-character-password,
-.type-character-confirm-password {
-  font-size: 16px;
-  color: red;
-  display: flex;
-  margin-left: 14px;
-  margin-bottom: 4px;
-  margin-top: 4px;
->>>>>>> error-display
 }
 .type-character-password input,
 .type-character-confirm-password input {
