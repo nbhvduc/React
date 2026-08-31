@@ -44,15 +44,13 @@ export function Login() {
       setTimeout(() => {
         navigate("/", { state: { email: email } });
       }, 2000);
-
-      
     } catch (error) {
       console.error(error);
       if (error instanceof Error) {
         setErrorMessage(error.message);
       }
     } finally {
-      }
+    }
   }
 
   function handleShowPassword(e: any) {
