@@ -33,6 +33,7 @@ export function Login() {
       });
 
       const data = await response.json();
+      localStorage.setItem("jwt", data.access_token);
       console.log(data);
 
       if (!response.ok) {
@@ -44,15 +45,13 @@ export function Login() {
       setTimeout(() => {
         navigate("/", { state: { email: email } });
       }, 2000);
-
-      
     } catch (error) {
       console.error(error);
       if (error instanceof Error) {
         setErrorMessage(error.message);
       }
     } finally {
-      }
+    }
   }
 
   function handleShowPassword(e: any) {

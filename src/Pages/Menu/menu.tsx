@@ -2,6 +2,7 @@ import { useState } from "react";
 import menuSticker from "../../assets/menu-sticker.png";
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router";
+
 import "./menu.css";
 
 export function Menu() {
