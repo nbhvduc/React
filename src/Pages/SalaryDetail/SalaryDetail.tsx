@@ -1,18 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router";
+import "./SalaryDetail.css";
 
 export function SalaryDetail() {
   const { year, month } = useParams();
   const yearAsNumber = Number(year);
   const monthAsNumber = Number(month);
 
-  const [loading, setLoading] = useState(false);
-
-  const [errorMessage, setErrorMessage] = useState("");
-  const [users, setUsers] = useState([]);
-
   const [currentTime, setCurrentTime] = useState(
-    new Date(yearAsNumber, monthAsNumber),
+    new Date(yearAsNumber, monthAsNumber - 1),
   );
 
   const goToPreviousMonth = () => {
@@ -25,65 +21,35 @@ export function SalaryDetail() {
 
       return newTime;
     });
-
-    const gotoNextMoth = () => {
-      setCurrentTime((prev) => {
-        const newTime = new Date(prev);
-
-        const newMonth = newTime.getMonth() + 1;
-
-        newTime.setMonth(newMonth);
-
-        return newTime;
-      });
-    };
   };
 
-  useEffect(() => {
-    async function fetchAllUsers() {
-      setLoading(true);
+  const goToNextMoth = () => {
+    setCurrentTime((prev) => {
+      const newTime = new Date(prev);
 
-      try {
-        const response = await fetch(
-          "http://127.0.0.1:8000/users/get_all_users",
-          {
-            method: "GET",
-            headers: {
-              "content-type": "application/json",
-            },
-          },
-        );
-        const data = await response.json();
-        setUsers(data);
-        console.log(data);
+      const newMonth = newTime.getMonth() + 1;
 
-        if (!response.ok) {
-          setErrorMessage(data.detail);
-        }
-      } catch (error) {
-        console.error(error);
-        if (error instanceof Error) {
-          setErrorMessage(error.message);
-        }
-      } finally {
-        setLoading(false);
-      }
-    }
+      newTime.setMonth(newMonth);
 
-    fetchAllUsers();
-  }, []);
+      return newTime;
+    });
+  };
 
+  const monthLabel = currentTime.toLocaleDateString("ja-JP", {
+    month: "long",
+    year: "numeric",
+  });
   return (
-    <ul>
-      {users.map((user: any) => {
-        return (
-          <li key={user.id}>
-            <p> {user.id}</p>
-            <p> {user.email}</p>
-            <p> {user.name}</p>
-          </li>
-        );
-      })}
-    </ul>
+    <div className="content-salary-container">
+      <div className="goToPreviousMonth" onClick={goToPreviousMonth}>
+        ＜先月
+      </div>
+      <div className="monthLabel">
+        <span>{monthLabel}</span>
+      </div>
+      <div className="goToNextMonth" onClick={goToNextMoth}>
+        ＞来月
+      </div>
+    </div>
   );
 }

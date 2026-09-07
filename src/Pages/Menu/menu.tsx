@@ -65,7 +65,7 @@ export function Menu() {
           src={menuSticker}
           alt="menu-Sticker"
         />
-        <h3 className="title-menu">勤怠管理アプリ</h3>
+        <h3 className="title-menu">勤怠管理システム</h3>
       </div>
     </div>
   );

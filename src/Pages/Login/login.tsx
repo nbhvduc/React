@@ -69,7 +69,7 @@ export function Login() {
         <div className="login-box">
           <div className="content-box">
             <div>
-              <h2 className="title">勤怠管理アプリ</h2>
+              <h2 className="title">勤怠管理システム</h2>
             </div>
             <div>
               <p className="content">ログイン</p>

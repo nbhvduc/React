@@ -1,0 +1,30 @@
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-salary-container {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  font-size: large;
+  margin-top: 40px;
+}
+.goToPreviousMonth {
+  justify-self: start;
+  cursor: pointer;
+  margin-left: 400px;
+  color: blue;
+}
+.goToNextMonth {
+  justify-self: end;
+  cursor: pointer;
+  color: blue;
+  margin-right: 400px;
+}
+.monthLabel {
+  justify-self: center;
+  color: red;
+}

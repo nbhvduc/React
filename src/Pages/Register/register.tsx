@@ -85,7 +85,7 @@ export function Register() {
         <div className="register-box">
           <div className="content-box">
             <div>
-              <h3 className="title">勤怠管理アプリ</h3>
+              <h3 className="title">勤怠管理システム</h3>
             </div>
             <div className="content">
               <p>社員登録</p>
