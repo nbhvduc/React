@@ -4,6 +4,8 @@ export type User = {
   id: number;
   email: string;
   role: "user" | "admin";
+  name: string;
+  employee_code: string;
   is_active: boolean;
 };
 

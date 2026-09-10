@@ -1,15 +1,14 @@
-import { useLocation } from "react-router";
 import "./SalaryList.css";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useUser } from "../../context/userProvider";
 
 export function SalaryList() {
-  const location = useLocation();
   const [isUserDropDown, setIsUserDropDown] = useState(false);
   const [selectYear, setSelectYear] = useState("2026");
   const [isSelectYear, setIsSelectYear] = useState(false);
   const navigate = useNavigate();
-  const email = location.state?.email ?? "";
+  const { user } = useUser();
 
   const years = ["2024", "2025", "2026", "2027", "2028", "2029", "2030"];
 
@@ -66,7 +65,7 @@ export function SalaryList() {
             d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
           />
         </svg>
-        <header className="header-salary">{email}</header>
+        <header className="header-salary">{user?.name}</header>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
