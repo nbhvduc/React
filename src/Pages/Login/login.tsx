@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
 import "./login.css";
+import { useUser } from "../../context/userProvider";
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -9,6 +10,7 @@ export function Login() {
   const [loading, setLoading] = useState(false);
   const [ErrorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const { setUser } = useUser();
 
   const navigate = useNavigate();
 
@@ -33,14 +35,38 @@ export function Login() {
       });
 
       const data = await response.json();
-      localStorage.setItem("jwt", data.access_token);
-      console.log(data);
 
       if (!response.ok) {
         setErrorMessage(data.detail);
         setLoading(false);
         return;
       }
+
+      localStorage.setItem("jwt", data.access_token);
+
+      const loggedInUser = {
+        id: data.id ?? 0,
+        email: data.email ?? email,
+        role: data.role === "admin" ? "admin" : "user",
+        name: data.name ?? data.username ?? email,
+        employee_code: data.employee_code ?? "",
+        is_active: data.is_active ?? true,
+      } as const;
+
+      const userResponse = await fetch(
+        "http://127.0.0.1:8000/users/get_employee",
+        {
+          method: "GET",
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${data.access_token}`,
+          },
+        },
+      );
+
+      const userData = await userResponse.json();
+
+      setUser(userResponse.ok ? userData : loggedInUser);
 
       setTimeout(() => {
         navigate("/", { state: { email: email } });

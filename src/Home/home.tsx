@@ -18,7 +18,9 @@ export const Home = () => {
           },
         );
         const data = await response.json();
-        setUser(data);
+        if (response.ok) {
+          setUser(data);
+        }
         console.log(data);
       } catch (error) {
         console.error(error);
@@ -29,5 +31,12 @@ export const Home = () => {
     fetchUser();
   }, [setUser]);
 
-  return <div>Welcome to Home Page</div>;
+  const { user } = useUser();
+
+  return (
+    <div>
+      <header className="header-salary">{user?.name}</header>
+      <div>Welcome to Home Page</div>
+    </div>
+  );
 };

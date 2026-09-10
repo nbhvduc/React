@@ -1,3 +1,12 @@
+import { useUser } from "../../context/userProvider";
+
 export function ChangePassword() {
-  return <div>Call API</div>;
+  const { user } = useUser();
+
+  return (
+    <div>
+      <header className="header-salary">{user?.name}</header>
+      <div>Call API</div>
+    </div>
+  );
 }

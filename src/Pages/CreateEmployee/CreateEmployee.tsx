@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useUser } from "../../context/userProvider";
 
 export function CreateEmployee() {
+  const { user } = useUser();
+
   return (
     <div>
+      <header className="header-salary">{user?.name}</header>
       <input type="text" />
 
       <p>Please select your age:</p>

@@ -150,3 +150,23 @@ body {
   font-size: 15px;
   color: red;
 }
+.name-css {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.required-tag-name {
+  font-size: 14px;
+  color: red;
+}
+.input-content-name {
+  width: 90%;
+  height: 30px;
+  border-radius: 4px;
+  margin: 4px;
+}
+.name {
+  text-align: left;
+  color: black;
+  margin: 4px;
+}
