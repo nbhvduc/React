@@ -69,7 +69,7 @@ export function Login() {
       setUser(userResponse.ok ? userData : loggedInUser);
 
       setTimeout(() => {
-        navigate("/", { state: { email: email } });
+        navigate("/");
       }, 2000);
     } catch (error) {
       console.error(error);

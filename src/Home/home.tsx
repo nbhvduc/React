@@ -31,12 +31,5 @@ export const Home = () => {
     fetchUser();
   }, [setUser]);
 
-  const { user } = useUser();
-
-  return (
-    <div>
-      <header className="header-salary">{user?.name}</header>
-      <div>Welcome to Home Page</div>
-    </div>
-  );
+  return <div></div>;
 };

@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { useParams } from "react-router";
 import "./SalaryDetail.css";
-import { useUser } from "../../context/userProvider";
 
 export function SalaryDetail() {
   const { year, month } = useParams();
   const yearAsNumber = Number(year);
   const monthAsNumber = Number(month);
-  const { user } = useUser();
 
   const [currentTime, setCurrentTime] = useState(
     new Date(yearAsNumber, monthAsNumber - 1),
@@ -43,7 +41,6 @@ export function SalaryDetail() {
   });
   return (
     <div className="content-salary-container">
-      <header className="header-salary">{user?.name}</header>
       <div className="goToPreviousMonth" onClick={goToPreviousMonth}>
         ＜先月
       </div>

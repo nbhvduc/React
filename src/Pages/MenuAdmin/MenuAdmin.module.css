@@ -2,21 +2,8 @@
   display: flex;
 }
 
-.title-menu {
-  color: rebeccapurple;
-  height: 50px;
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  padding-left: 20px;
-  left: 0;
-  right: 0;
-  flex: 1;
-  justify-content: center;
-}
 .header {
   display: flex;
-  background: #7bfdb1;
   align-items: center;
   flex: 1;
 }
