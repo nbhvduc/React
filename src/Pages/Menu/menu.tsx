@@ -6,6 +6,7 @@ import {
   FaRegFileAlt,
   FaCogs,
   FaSignOutAlt,
+  FaUser,
 } from "react-icons/fa";
 
 import "./menu.css";
@@ -46,6 +47,14 @@ export function Menu() {
           >
             <FaRegFileAlt className="icons" />
             WEB給与明細
+          </li>
+          <li
+            onClick={() => {
+              navigate("BacsicInfo");
+            }}
+          >
+            <FaUser className="icons" />
+            個人情報
           </li>
           <li
             onClick={() => {

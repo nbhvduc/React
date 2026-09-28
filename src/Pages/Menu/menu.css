@@ -1,8 +1,6 @@
 .container {
   display: flex;
   flex-direction: column;
-  color: #3b82f6;
-  background-color: #e7c6cf;
 }
 
 .header {
@@ -10,8 +8,10 @@
   justify-content: space-between;
   justify-content: flex-start;
   height: 75px;
-  background-color: #e6c1c7;
   padding: 0 20px;
+  background: linear-gradient(180deg, #4f78b9 0%, #4e74aa 55%, #2860a8 100%);
+
+  color: #f1f6fc;
 }
 .title-menu {
   display: flex;
@@ -20,7 +20,7 @@
 }
 .title-icon {
   align-items: center;
-  color: blue;
+  color: rgb(253, 35, 86);
   margin-right: 10px;
   font-size: x-large;
 }
@@ -35,8 +35,11 @@
 .content-project {
   display: flex;
   width: 100%;
-  background-color: #e8f3fc;
   height: auto;
+  background: linear-gradient(180deg, #4f78b9 0%, #4e74aa 55%, #2860a8 100%);
+
+  color: #f1f6fc;
+  font-weight: 500;
 
   box-sizing: border-box;
   margin-left: 0;
@@ -57,6 +60,6 @@
 .icons {
   display: flex;
   align-items: center;
-  color: blue;
+  color: rgb(253, 35, 86);
   margin-right: 10px;
 }
