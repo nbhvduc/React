@@ -12,6 +12,8 @@ import { InputOTP } from "./Pages/ForgotPassword/inputOTP";
 import { CreateNewPassword } from "./Pages/ForgotPassword/CreateNewPassword";
 import { SalaryDetail } from "./Pages/SalaryDetail/SalaryDetail";
 import { ChangePassword } from "./Pages/ChangePassword/changepassword";
+import { CreateEmployee } from "./Pages/CreateEmployee/CreateEmployee";
+import { BacsicInfo } from "./Pages/BacsicInfor/BacsicInfo";
 
 import { SalaryList } from "./Pages/SalaryList/SalaryList";
 
@@ -37,6 +39,14 @@ export const router = createBrowserRouter([
       {
         path: "/changepassword",
         element: <ChangePassword />,
+      },
+      {
+        path: "create_employee",
+        element: <CreateEmployee />,
+      },
+      {
+        path: "BacsicInfo",
+        element: <BacsicInfo />,
       },
     ],
   },

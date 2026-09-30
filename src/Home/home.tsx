@@ -7,15 +7,20 @@ export const Home = () => {
   useEffect(() => {
     async function fetchUser() {
       try {
-        const response = await fetch("http://127.0.0.1:8000/users/get_user", {
-          method: "GET",
-          headers: {
-            "content-type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("jwt") || ""}`,
+        const response = await fetch(
+          "http://127.0.0.1:8000/users/get_employee",
+          {
+            method: "GET",
+            headers: {
+              "content-type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("jwt") || ""}`,
+            },
           },
-        });
+        );
         const data = await response.json();
-        setUser(data);
+        if (response.ok) {
+          setUser(data);
+        }
         console.log(data);
       } catch (error) {
         console.error(error);
@@ -26,5 +31,5 @@ export const Home = () => {
     fetchUser();
   }, [setUser]);
 
-  return <div>Welcome to Home Page</div>;
+  return <div></div>;
 };

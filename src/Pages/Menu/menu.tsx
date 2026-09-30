@@ -1,72 +1,79 @@
-import { useState } from "react";
-import menuSticker from "../../assets/menu-sticker.png";
 import { useNavigate } from "react-router";
-import { useLocation } from "react-router";
+import { useUser } from "../../context/userProvider";
+import {
+  FaHome,
+  FaRegClock,
+  FaRegFileAlt,
+  FaCogs,
+  FaSignOutAlt,
+  FaUser,
+} from "react-icons/fa";
 
 import "./menu.css";
 
 export function Menu() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
-  const email = location.state?.email ?? "";
-  console.log(email);
-
-  function handleToggleMenu() {
-    setIsMenuOpen((prev) => !prev);
-  }
-
-  const classMenu = ["menu", isMenuOpen ? "menu-open" : ""].join(" ");
-  console.log(classMenu);
+  const { user } = useUser();
 
   return (
-    <div className="container">
-      <div className={classMenu}>
+    <>
+      <div className="header app-header">
+        <div className="title-menu">
+          <h3>
+            <FaRegClock className="title-icon" />
+            勤怠管理システム
+          </h3>
+        </div>
+        <div className="user-title">
+          <div>名前：{user?.name}</div>
+          <div>社員コード：{user?.employee_code}</div>
+        </div>
+      </div>
+
+      <nav className="content-project">
         <ul>
           <li
             onClick={() => {
-              navigate("/home");
-              handleToggleMenu();
+              navigate("/");
             }}
           >
+            <FaHome className="icons" />
             ホームページ
           </li>
           <li
             onClick={() => {
-              navigate("/SalaryList", { state: { email: email } });
-              handleToggleMenu();
+              navigate("/SalaryList");
             }}
           >
+            <FaRegFileAlt className="icons" />
             WEB給与明細
           </li>
           <li
             onClick={() => {
-              navigate("/changepassword", { state: { email } });
-              handleToggleMenu();
+              navigate("BacsicInfo");
             }}
           >
-            パスワード・メールアドレス設定
+            <FaUser className="icons" />
+            個人情報
+          </li>
+          <li
+            onClick={() => {
+              navigate("/changepassword");
+            }}
+          >
+            <FaCogs className="icons" />
+            パスワード設定
           </li>
           <li
             onClick={() => {
               navigate("/login");
-              handleToggleMenu();
             }}
           >
+            <FaSignOutAlt className="icons" />
             ログアウト
           </li>
         </ul>
-      </div>
-
-      <div className="header">
-        <img
-          style={{ cursor: "pointer" }}
-          onClick={handleToggleMenu}
-          src={menuSticker}
-          alt="menu-Sticker"
-        />
-        <h3 className="title-menu">勤怠管理システム</h3>
-      </div>
-    </div>
+      </nav>
+    </>
   );
 }

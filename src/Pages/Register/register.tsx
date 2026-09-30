@@ -5,6 +5,7 @@ import "./register.css";
 export function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUserName] = useState("");
   const [loading, setLoading] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [ErrorMessage, setErrorMessage] = useState("");
@@ -20,8 +21,8 @@ export function Register() {
 
   async function handleRegister() {
     setLoading(true);
-    if (!email || !password) {
-      setErrorMessage("メールとパスワードを入力してください");
+    if (!email || !password || !username) {
+      setErrorMessage("メールとかパスワードとか名前を入力してください");
       setLoading(false);
       return;
     }
@@ -42,6 +43,7 @@ export function Register() {
           "Content-type": "application/json",
         },
         body: JSON.stringify({
+          username: username,
           email: email,
           password: password,
           confirm_password: confirmPassword,
@@ -51,8 +53,11 @@ export function Register() {
       const data = await response.json();
 
       if (!response.ok) {
-        setErrorMessage(data.detail);
-
+        if (Array.isArray(data.detail)) {
+          setErrorMessage(data.detail[0].msg);
+        } else {
+          setErrorMessage(data.detail);
+        }
         return;
       }
 
@@ -90,6 +95,22 @@ export function Register() {
             <div className="content">
               <p>社員登録</p>
             </div>
+
+            <div className="name-css">
+              <div className="name">名前</div>
+              <span className="required-tag-name">*必須 </span>
+            </div>
+            <input
+              className="input-content-name"
+              id="name"
+              type="text"
+              placeholder="名前を入力してください"
+              onFocus={(e) => (e.target.placeholder = "")}
+              onBlur={(e) => (e.target.placeholder = "名前を入力してください")}
+              name="name"
+              value={username}
+              onChange={(e) => setUserName(e.target.value)}
+            />
 
             <div>
               <div className="mail-css">
@@ -192,7 +213,6 @@ export function Register() {
             <div>
               <Link to="/login">ログイン</Link>
             </div>
-            {ErrorMessage && <p style={{ color: "red" }}>{ErrorMessage}</p>}
 
             <div>
               <button
