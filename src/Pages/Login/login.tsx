@@ -70,7 +70,7 @@ export function Login() {
 
       setTimeout(() => {
         navigate("/");
-      }, 2000);
+      }, 1000);
     } catch (error) {
       console.error(error);
       if (error instanceof Error) {

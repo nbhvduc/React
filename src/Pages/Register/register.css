@@ -26,7 +26,7 @@ body {
   margin: 50px;
   margin-bottom: 15px;
   background: none;
-  width: 420px;
+  width: 600px;
 }
 
 .title {
@@ -59,18 +59,19 @@ body {
   margin: 4px;
 }
 .input-content-mail {
-  width: 90%;
+  width: 99%;
   height: 30px;
   border-radius: 4px;
   margin: 4px;
 }
+
 .password {
   text-align: left;
   color: black;
   margin: 4px;
 }
 .input-content-password {
-  width: 90%;
+  width: 99%;
   height: 30px;
   border-radius: 4px;
   margin: 4px;
@@ -81,11 +82,12 @@ body {
   margin: 4px;
 }
 .input-content-confirm-password {
-  width: 90%;
+  width: 99%;
   height: 30px;
   border-radius: 4px;
   margin: 4px;
 }
+
 .checkbox-confirm-password,
 .checkbox-password {
   font-size: 16px;
@@ -97,19 +99,21 @@ body {
 }
 .type-character-password input,
 .type-character-confirm-password input {
-  height: 16px;
-  width: 16px;
-  align-items: center;
-  display: flex;
-  margin-top: 6px;
+  width: 99%;
+  height: 30px;
+  border-radius: 4px;
+  margin: 4px;
 }
 
 .button-register {
+  width: 100%;
   height: 40px;
-  width: 90%;
-  background-color: #7bfdb1;
-  margin: 10px;
-  font-size: 100%;
+  border-radius: 4px;
+  margin: 4px;
+  margin-top: 20px;
+  background-color: blue;
+  color: white;
+  font-size: large;
 }
 .password-container {
   margin: 0 auto;
@@ -147,8 +151,9 @@ body {
   color: red;
 }
 .plain-text {
-  font-size: 15px;
+  font-size: 20px;
   color: red;
+  font-family: 400;
 }
 .name-css {
   display: flex;
@@ -160,11 +165,12 @@ body {
   color: red;
 }
 .input-content-name {
-  width: 90%;
+  width: 99%;
   height: 30px;
   border-radius: 4px;
   margin: 4px;
 }
+
 .name {
   text-align: left;
   color: black;

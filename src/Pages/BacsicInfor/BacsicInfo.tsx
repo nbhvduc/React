@@ -1,16 +1,24 @@
 import { useEffect, useState } from "react";
 import { BacsicInfoAPI } from "./BacsicInfoAPI";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaMoneyBillWave } from "react-icons/fa"; // Thêm icon tiền tệ nếu muốn
 import "./BacsicInfo.css";
 
 interface Employee {
   name: string;
-  role: string;
+  role_label: string;
   email: string;
+  employee_code: string;
+  salary_type_label: number;
+  base_salary: number;
+  allowance: number;
+  night_pay: number;
+  holiday_pay: number;
+  overtime_pay: number;
 }
 
 export function BacsicInfo() {
   const [employee, setEmployee] = useState<Employee | null>(null);
+  const [image, setImage] = useState<File | null>(null);
 
   useEffect(() => {
     async function getEmployee() {
@@ -24,8 +32,15 @@ export function BacsicInfo() {
     getEmployee();
   }, []);
 
+  const handleImageChange = (e: any) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(file);
+    }
+  };
+
   return (
-    <div className="info-table">
+    <div className="info-page-wrapper">
       <div>
         <h3 className="employee-name">
           <FaUser className="icon-employee" />
@@ -36,10 +51,99 @@ export function BacsicInfo() {
 
       <div className="info-grid-container">
         <div className="info-name-row">
-          <p className="info-grid-container-name">{employee?.name}</p>
-          <span className="info-grid-container-span">{employee?.role}</span>
+          <label htmlFor="imageUpload" className="image-box">
+            {image ? (
+              <img src={URL.createObjectURL(image)} alt="Preview" />
+            ) : (
+              <span>+</span>
+            )}
+          </label>
+          <input
+            id="imageUpload"
+            type="file"
+            accept="image/*"
+            hidden
+            onChange={handleImageChange}
+          />
+          <div className="info-text-group">
+            <div className="name-role-row">
+              <p className="info-grid-container-name">{employee?.name}</p>
+              <span className="info-grid-container-span">
+                {employee?.role_label}
+              </span>
+            </div>
+            <div className="info-grid-container-email">
+              <div className="icon-user">
+                <FaEnvelope className="icon" />
+                <span className="email-label">メールアドレス</span>
+              </div>
+              <span> {employee?.email}</span>
+            </div>
+            <div className="info-grid-container-role">
+              <div className="icon-user">
+                <FaUser className="icon" />
+                <span>役割</span>
+              </div>
+              <span>{employee?.role_label} </span>
+            </div>
+          </div>
         </div>
-        <p className="info-grid-container-email">{employee?.email}</p>
+      </div>
+
+      <div className="info-container">
+        <div className="info-left">
+          <h3 className="employee-info">
+            <FaUser className="icon-user-info" />
+            個人情報
+          </h3>
+          <div className="info-table">
+            <div className="info-row">
+              <div className="info-lable">氏名</div>
+              <div className="info-value">{employee?.name}</div>
+            </div>
+            <div className="info-row">
+              <div className="info-lable">社員コード</div>
+              <div className="info-value">{employee?.employee_code}</div>
+            </div>
+            <div className="info-row">
+              <div className="info-lable">役割</div>
+              <div className="info-value">{employee?.role_label}</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="info-right">
+          <h3 className="employee-info">
+            <FaMoneyBillWave className="icon-user-info" />
+            給与情報
+          </h3>
+          <div className="info-table">
+            <div className="info-row">
+              <div className="info-lable">給与タイプ</div>
+              <div className="info-value">{employee?.salary_type_label}</div>
+            </div>
+            <div className="info-row">
+              <div className="info-lable">基本給</div>
+              <div className="info-value">{employee?.base_salary}</div>
+            </div>
+            <div className="info-row">
+              <div className="info-lable">各種手当</div>
+              <div className="info-value">{employee?.allowance}</div>
+            </div>
+            <div className="info-row">
+              <div className="info-lable">深夜手当</div>
+              <div className="info-value">{employee?.night_pay}</div>
+            </div>
+            <div className="info-row">
+              <div className="info-lable">休日手当</div>
+              <div className="info-value">{employee?.holiday_pay}</div>
+            </div>
+            <div className="info-row">
+              <div className="info-lable">時間外手当</div>
+              <div className="info-value">{employee?.overtime_pay}</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

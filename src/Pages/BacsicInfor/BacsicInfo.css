@@ -1,82 +1,147 @@
-.info-table {
-  background-color: #ffffff;
-  max-width: 650px;
-  width: 100%;
-  flex: 1;
+.info-page-wrapper {
+  padding: 20px;
+  font-family: sans-serif;
 }
 
 .employee-name {
   display: flex;
-  text-align: left;
-  margin-top: 10px;
-  margin-left: 20px;
-  font-weight: 600; /* Sửa lỗi font-weight không dùng đơn vị px */
-  font-size: 30px;
-  gap: 10px;
-}
-
-.icon-employee {
-  height: 40px;
-  width: 50px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+  color: #333;
 }
 
 .p {
-  display: flex;
-  text-align: left;
-  margin-left: 70px;
-}
-
-/* Khung chứa màu trắng bao trọn thông tin */
-.info-grid-container {
-  display: flex;
-  flex-direction: column; /* Xếp hàng tên và hàng email theo chiều dọc */
-  justify-content: left;
-  margin-left: 20px;
-  margin-top: 10px;
-  background-color: #ffffff;
-  border-radius: 4px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  width: 100%; /* Đổi width: 800px thành 100% để vừa khít info-table */
-  max-width: 550px; /* Giới hạn chiều rộng khung thông tin cho đẹp */
-  height: auto; /* Để auto để tự co giãn ôm trọn email không lo bị tràn */
-  gap: 16px; /* Khoảng cách giữa dòng Tên và dòng Email */
-  border: 1px solid #e5e7eb; /* Thêm đường viền mờ bao quanh cho chuyên nghiệp */
-}
-
-/* Class mới giúp Tên và Nút vai trò song song hàng ngang */
-.info-name-row {
-  display: flex;
-  align-items: center; /* Căn nút manager thẳng hàng giữa chữ Tên */
-  gap: 12px; /* Khoảng cách giữa chữ Tên và nút manager */
-  margin-left: 40px;
-}
-
-.info-grid-container-name {
-  margin: 0; /* Xóa margin mặc định để không bị lệch hàng với span */
-  color: black;
-  font-weight: 700; /* Thay đổi từ font-family thành font-weight */
-  font-size: 18px;
-}
-
-.info-grid-container-span {
-  background-color: #90f495;
-  color: #1f2937; /* Đổi sang màu tối cho dễ nhìn giống giao diện chuẩn */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: auto; /* Bỏ width 90px cố định để tự co giãn vừa chữ */
-  height: 26px; /* Thu nhỏ chiều cao vừa vặn viên thuốc */
-  padding: 0 12px;
-  border-radius: 30px;
-  font-size: 14px;
+  color: #111010;
+  font-size: 20px;
+  margin-bottom: 20px;
   font-weight: 500;
 }
 
-/* Định dạng hiển thị dòng Email */
-.info-grid-container-email {
+.info-grid-container {
+  background: #fdfdfd;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.info-name-row {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.image-box {
+  width: 100px;
+  height: 100px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.name-role-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.info-grid-container-name {
+  font-size: 18px;
+  font-weight: bold;
   margin: 0;
-  margin-left: 40px; /* Căn lề trái thẳng hàng với phần Tên bên trên */
-  color: #6b7280; /* Chuyển màu chữ xám nhẹ cho tinh tế */
-  font-size: 15px;
+}
+
+.info-grid-container-span {
+  background: #e2f0d9;
+  color: #385723;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.info-grid-container-email,
+.info-grid-container-role {
+  display: flex;
+  align-items: center;
+  gap: 45px;
+  margin: 0;
+  color: #222121;
+  font-weight: 500;
+}
+
+.icon-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 140px;
+  color: #121111;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 40px;
+  align-items: flex-start;
+  margin-top: 10px;
+}
+
+.info-left,
+.info-right {
+  flex: 1;
+}
+
+.employee-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #d9e1f2;
+  color: #1f4e79;
+  padding: 10px 15px;
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.info-table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.info-lable {
+  color: #41719c;
+  font-weight: bold;
+  width: 40%;
+}
+
+.info-value {
+  color: #333;
+  width: 60%;
+  text-align: left;
 }

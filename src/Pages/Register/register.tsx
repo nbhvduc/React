@@ -211,10 +211,6 @@ export function Register() {
             {ErrorMessage && <p style={{ color: "red" }}>{ErrorMessage}</p>}
 
             <div>
-              <Link to="/login">ログイン</Link>
-            </div>
-
-            <div>
               <button
                 className="button-register"
                 type="submit"
@@ -224,7 +220,7 @@ export function Register() {
               </button>
             </div>
 
-            <div>
+            <div className="login-">
               <span className="plain-text">アカウントをお持ちですか？</span>
               <Link to="/login">ログイン</Link>
             </div>
