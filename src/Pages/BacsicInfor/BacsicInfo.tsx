@@ -1,40 +1,13 @@
-import { useEffect, useState } from "react";
-import { BacsicInfoAPI } from "./BacsicInfoAPI";
+import { useState } from "react";
+import { useEmployeeInfo } from "../../hooks/useEmployeeInfo";
 import { FaUser, FaEnvelope, FaMoneyBillWave, FaEdit } from "react-icons/fa";
 import "./BacsicInfo.css";
 import { useNavigate } from "react-router";
 
-interface Employee {
-  name: string;
-  role_label: string;
-  email: string;
-  employee_code: string;
-  birthday: string;
-  phone: string;
-  salary_type_label: number;
-  base_salary: number;
-  allowance: number;
-  night_pay: number;
-  holiday_pay: number;
-  overtime_pay: number;
-}
-
 export function BacsicInfo() {
-  const [employee, setEmployee] = useState<Employee | null>(null);
+  const { employee } = useEmployeeInfo();
   const [image, setImage] = useState<File | null>(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    async function getEmployee() {
-      try {
-        const data = await BacsicInfoAPI();
-        setEmployee(data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getEmployee();
-  }, []);
 
   const handleImageChange = (e: any) => {
     const file = e.target.files[0];

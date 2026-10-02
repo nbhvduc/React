@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { ChangeMyProfileAPI } from "./changeMyProfileAPI";
-import { BacsicInfoAPI } from "../BacsicInfor/BacsicInfoAPI";
 import { ModalConfirm } from "../ModalConfirm/ModalConfirm";
+import { useEmployeeInfo } from "../../hooks/useEmployeeInfo";
 
 import "./changeMyProfile.css";
 import { useNavigate } from "react-router";
 
 export function UpdateMyProfile() {
+  const { employee } = useEmployeeInfo();
   const [name, setName] = useState("");
   const [birthday, setBirthday] = useState("");
   const [phone, setPhone] = useState("");
@@ -14,18 +15,10 @@ export function UpdateMyProfile() {
   const [showConfirm, setShowConfirm] = useState(false);
 
   useEffect(() => {
-    async function getCurrentName() {
-      try {
-        const data = await BacsicInfoAPI();
-        setName(data.name ?? "");
-        setBirthday(data.birthday ?? "");
-        setPhone(data.phone ?? "");
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getCurrentName();
-  }, []);
+    setName(employee?.name ?? "");
+    setBirthday(employee?.birthday ?? "");
+    setPhone(employee?.phone ?? "");
+  }, [employee?.name, employee?.birthday, employee?.phone]);
 
   async function handleChangeMyProfile() {
     try {
