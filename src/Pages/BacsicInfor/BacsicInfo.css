@@ -24,6 +24,7 @@
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 30px;
+  width: 60%;
 }
 
 .info-name-row {
@@ -64,7 +65,7 @@
 
 .info-grid-container-name {
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 900;
   margin: 0;
 }
 
@@ -144,4 +145,11 @@
   color: #333;
   width: 60%;
   text-align: left;
+}
+.icon-edit {
+  margin-left: auto;
+  width: 28px;
+  height: 28px;
+  color: blue;
+  cursor: pointer;
 }

@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { BacsicInfoAPI } from "./BacsicInfoAPI";
-import { FaUser, FaEnvelope, FaMoneyBillWave } from "react-icons/fa"; // Thêm icon tiền tệ nếu muốn
+import { FaUser, FaEnvelope, FaMoneyBillWave, FaEdit } from "react-icons/fa";
 import "./BacsicInfo.css";
+import { useNavigate } from "react-router";
 
 interface Employee {
   name: string;
   role_label: string;
   email: string;
   employee_code: string;
+  birthday: string;
+  phone: string;
   salary_type_label: number;
   base_salary: number;
   allowance: number;
@@ -19,6 +22,7 @@ interface Employee {
 export function BacsicInfo() {
   const [employee, setEmployee] = useState<Employee | null>(null);
   const [image, setImage] = useState<File | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getEmployee() {
@@ -38,6 +42,9 @@ export function BacsicInfo() {
       setImage(file);
     }
   };
+  function handleNavigateChangeMyProfile() {
+    navigate("/UpdateMyProfile");
+  }
 
   return (
     <div className="info-page-wrapper">
@@ -65,7 +72,13 @@ export function BacsicInfo() {
             hidden
             onChange={handleImageChange}
           />
+
           <div className="info-text-group">
+            <FaEdit
+              onClick={handleNavigateChangeMyProfile}
+              className="icon-edit"
+            />
+
             <div className="name-role-row">
               <p className="info-grid-container-name">{employee?.name}</p>
               <span className="info-grid-container-span">
@@ -104,6 +117,14 @@ export function BacsicInfo() {
             <div className="info-row">
               <div className="info-lable">社員コード</div>
               <div className="info-value">{employee?.employee_code}</div>
+            </div>
+            <div className="info-row">
+              <div className="info-lable">生年月日</div>
+              <div className="info-value">{employee?.birthday}</div>
+            </div>
+            <div className="info-row">
+              <div className="info-lable">電話番号</div>
+              <div className="info-value">{employee?.phone}</div>
             </div>
             <div className="info-row">
               <div className="info-lable">役割</div>

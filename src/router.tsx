@@ -14,6 +14,7 @@ import { SalaryDetail } from "./Pages/SalaryDetail/SalaryDetail";
 import { ChangePassword } from "./Pages/ChangePassword/changepassword";
 import { CreateEmployee } from "./Pages/CreateEmployee/CreateEmployee";
 import { BacsicInfo } from "./Pages/BacsicInfor/BacsicInfo";
+import { UpdateMyProfile } from "./Pages/ChangeSeflProfile/changeMyProfile";
 
 import { SalaryList } from "./Pages/SalaryList/SalaryList";
 
@@ -41,12 +42,16 @@ export const router = createBrowserRouter([
         element: <ChangePassword />,
       },
       {
-        path: "create_employee",
+        path: "/create_employee",
         element: <CreateEmployee />,
       },
       {
-        path: "BacsicInfo",
+        path: "/BacsicInfo",
         element: <BacsicInfo />,
+      },
+      {
+        path: "/UpdateMyProfile",
+        element: <UpdateMyProfile />,
       },
     ],
   },

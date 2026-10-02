@@ -10,6 +10,7 @@ export function Login() {
   const [loading, setLoading] = useState(false);
   const [ErrorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
   const { setUser } = useUser();
 
   const navigate = useNavigate();
@@ -70,7 +71,7 @@ export function Login() {
 
       setTimeout(() => {
         navigate("/");
-      }, 1000);
+      }, 500);
     } catch (error) {
       console.error(error);
       if (error instanceof Error) {

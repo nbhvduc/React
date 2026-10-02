@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router";
+import { useState } from "react";
 import { useUser } from "../../context/userProvider";
 import {
   FaHome,
@@ -8,12 +9,21 @@ import {
   FaSignOutAlt,
   FaUser,
 } from "react-icons/fa";
+import { ModalConfirm } from "../ModalConfirm/ModalConfirm";
 
 import "./menu.css";
 
 export function Menu() {
   const navigate = useNavigate();
-  const { user } = useUser();
+  const { user, setUser } = useUser();
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  function handleLogout() {
+    localStorage.removeItem("jwt");
+    setUser(null);
+    navigate("/login");
+    setShowConfirm(false);
+  }
 
   return (
     <>
@@ -65,8 +75,14 @@ export function Menu() {
             パスワード設定
           </li>
           <li
-            onClick={() => {
-              navigate("/login");
+            role="button"
+            tabIndex={0}
+            onClick={() => setShowConfirm(true)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                setShowConfirm(true);
+              }
             }}
           >
             <FaSignOutAlt className="icons" />
@@ -74,6 +90,13 @@ export function Menu() {
           </li>
         </ul>
       </nav>
+      {showConfirm && (
+        <ModalConfirm
+          message="ログアウトしますか？"
+          onConfirm={handleLogout}
+          onCancel={() => setShowConfirm(false)}
+        />
+      )}
     </>
   );
 }
