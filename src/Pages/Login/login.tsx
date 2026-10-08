@@ -87,6 +87,7 @@ export function Login() {
 
   return (
     <form
+      className="login-page"
       onSubmit={(e) => {
         e.preventDefault();
         handleLogin();

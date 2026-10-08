@@ -1,178 +1,232 @@
-*,
-body {
-  margin: 0;
-  padding: 0;
+.register-page,
+.register-page * {
   box-sizing: border-box;
 }
+
+.register-page {
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 32px 20px;
+  background:
+    radial-gradient(ellipse at 12% 8%, rgb(212 239 231 / 70%), transparent 36%),
+    linear-gradient(135deg, #f5f8fc 0%, #edf3f8 100%);
+  color: #172b3a;
+  font-family:
+    Inter, "Noto Sans JP", "Yu Gothic UI", "Hiragino Kaku Gothic ProN",
+    sans-serif;
+}
+
 .register-container {
   display: flex;
+  min-height: calc(100vh - 64px);
+  min-height: calc(100svh - 64px);
   align-items: center;
   justify-content: center;
-  background-color: white;
-  padding: 10px;
-  height: 120%;
 }
 
 .register-box {
-  display: flex;
-  flex-direction: column;
-  padding: 30px;
-  border-radius: 12px;
-  max-width: 400px;
-  box-sizing: border-box;
-  box-shadow: 0 4px 20px rgba(232, 4, 4, 0.08);
+  width: min(100%, 520px);
+  margin: 0;
+  padding: clamp(26px, 5vw, 40px);
+  border: 1px solid #e3eaf0;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 20px 55px rgb(30 55 75 / 10%);
+}
+
+.register-box .content-box {
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  background: transparent;
+  text-align: left;
+}
+
+.register-box .title {
+  display: block;
+  height: auto;
+  margin: 0 0 22px;
+  padding: 0;
+  color: #183b4e;
+  font-size: 22px;
+  font-weight: 700;
   text-align: center;
-  border: 1 solid #e0e0e0;
-  margin: 50px;
-  margin-bottom: 15px;
-  background: none;
-  width: 600px;
 }
 
-.title {
-  color: rebeccapurple;
-
-  height: 50px;
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  padding-left: 20px;
-  left: 0;
-  right: 0;
-  flex: 1;
-  justify-content: center;
-}
-.content-box {
-  text-align: center;
-  border-radius: 12px;
-  background-color: aliceblue;
-  width: 95%;
-  height: 80%;
-}
-.content {
-  color: rgb(216, 26, 26);
-  margin: 12px;
-}
-.mail {
-  text-align: left;
-  color: black;
-  margin: 4px;
-}
-.input-content-mail {
-  width: 99%;
-  height: 30px;
-  border-radius: 4px;
-  margin: 4px;
-}
-
-.password {
-  text-align: left;
-  color: black;
-  margin: 4px;
-}
-.input-content-password {
-  width: 99%;
-  height: 30px;
-  border-radius: 4px;
-  margin: 4px;
-}
-.confirm-password {
-  text-align: left;
-  color: black;
-  margin: 4px;
-}
-.input-content-confirm-password {
-  width: 99%;
-  height: 30px;
-  border-radius: 4px;
-  margin: 4px;
-}
-
-.checkbox-confirm-password,
-.checkbox-password {
+.register-box .content {
+  margin: 0 0 24px;
+  color: #23835e;
   font-size: 16px;
-  color: black;
-  display: flex;
-  margin-left: 14px;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  font-weight: 700;
+  text-align: center;
 }
-.type-character-password input,
-.type-character-confirm-password input {
-  width: 99%;
-  height: 30px;
-  border-radius: 4px;
-  margin: 4px;
+
+.name-css,
+.mail-css,
+.password-css,
+.confirm-password-css {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 17px 0 7px;
+}
+
+.name,
+.mail,
+.password,
+.confirm-password {
+  margin: 0;
+  color: #344b5a;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.required-tag-name,
+.required-tag-email,
+.required-tag-password,
+.required-tag-confirm-password {
+  color: #c44949;
+  font-size: 12px;
+}
+
+.input-content-name,
+.input-content-mail,
+.input-content-password,
+.input-content-confirm-password {
+  display: block;
+  width: 100%;
+  height: 46px;
+  margin: 0;
+  padding: 0 13px;
+  border: 1px solid #d4dee6;
+  border-radius: 9px;
+  background: #fff;
+  color: #172b3a;
+  font: inherit;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.input-content-name::placeholder,
+.input-content-mail::placeholder,
+.input-content-password::placeholder,
+.input-content-confirm-password::placeholder {
+  color: #98a7b3;
+}
+
+.input-content-name:focus,
+.input-content-mail:focus,
+.input-content-password:focus,
+.input-content-confirm-password:focus {
+  border-color: #25845f;
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(37 132 95 / 14%);
+}
+
+.password-container {
+  margin: 0;
+}
+
+.check-password {
+  margin: 8px 0;
+  color: #bd4545;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.check-password p {
+  margin: 3px 0;
+}
+
+.checkbox-password,
+.checkbox-confirm-password label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #5c6d78;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.checkbox-password input,
+.checkbox-confirm-password input {
+  margin: 0;
+  accent-color: #23835e;
+}
+
+.checkbox-confirm-password {
+  margin-top: 10px;
 }
 
 .button-register {
   width: 100%;
-  height: 40px;
-  border-radius: 4px;
-  margin: 4px;
-  margin-top: 20px;
-  background-color: blue;
-  color: white;
-  font-size: large;
-}
-.password-container {
-  margin: 0 auto;
-}
-.button-container {
-  width: 90%;
-  margin: 0 auto;
-  text-align: left;
-}
-.mail-css {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.required-tag-email {
-  font-size: 14px;
-  color: red;
-}
-.password-css {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.required-tag-password {
-  font-size: 14px;
-  color: red;
-}
-.confirm-password-css {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.required-tag-confirm-password {
-  font-size: 14px;
-  color: red;
-}
-.plain-text {
-  font-size: 20px;
-  color: red;
-  font-family: 400;
-}
-.name-css {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.required-tag-name {
-  font-size: 14px;
-  color: red;
-}
-.input-content-name {
-  width: 99%;
-  height: 30px;
-  border-radius: 4px;
-  margin: 4px;
+  min-height: 48px;
+  margin: 24px 0 0;
+  border: 0;
+  border-radius: 9px;
+  background: #23835e;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
 }
 
-.name {
-  text-align: left;
-  color: black;
-  margin: 4px;
+.button-register:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: #196c4c;
+}
+
+.button-register:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.login- {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.plain-text {
+  color: #657782;
+  font-size: 13px;
+}
+
+.login- a {
+  color: #28745a;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.login- a:hover {
+  text-decoration: underline;
+}
+
+.register-page button:focus-visible,
+.register-page input:focus-visible,
+.register-page a:focus-visible {
+  outline: 3px solid rgb(37 132 95 / 35%);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .register-page {
+    padding: 16px 12px;
+  }
+
+  .register-container {
+    min-height: calc(100svh - 32px);
+  }
+
+  .register-box {
+    border-radius: 16px;
+  }
 }

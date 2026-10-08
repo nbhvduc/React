@@ -1,9 +1,17 @@
 import { useNavigate } from "react-router";
+import { useUser } from "../../context/userProvider";
 
 import "./MenuAdmin.module.css";
 
 export function MenuAdmin() {
   const navigate = useNavigate();
+  const { setUser } = useUser();
+
+  function handleLogout() {
+    localStorage.removeItem("jwt");
+    setUser(null);
+    navigate("/login");
+  }
 
   return (
     <>
@@ -43,9 +51,7 @@ export function MenuAdmin() {
           </li>
 
           <li
-            onClick={() => {
-              navigate("/login");
-            }}
+            onClick={handleLogout}
           >
             ログアウト
           </li>

@@ -69,6 +69,7 @@ export function CreateNewPassword() {
   }
   return (
     <form
+      className="create-password-page"
       onSubmit={(e) => {
         e.preventDefault();
         handleCreateNewPassword();
@@ -76,13 +77,14 @@ export function CreateNewPassword() {
     >
       <h2 className="title-new-password">勤怠管理アプリ</h2>
       <div className="create-password-box">
-        <div className="content-box">
+        <div className="create-password-content">
           <div>
-            <h2>パスワード再設定</h2>
+            <h2 className="create-password-heading">パスワード再設定</h2>
           </div>
-          <div>
-            <div>新しいパスワード</div>
+          <div className="create-password-field">
+            <div className="create-password-label">新しいパスワード</div>
             <input
+              className="create-password-input"
               id="newpassword"
               type={showNewPassword ? "text" : "password"}
               placeholder="新しいパスワード入力してください"
@@ -93,7 +95,7 @@ export function CreateNewPassword() {
               value={newpassword}
               onChange={(e) => setNewPassword(e.target.value)}
             />
-            <div>
+            <div className="create-password-checkbox">
               <label>
                 <input
                   type="checkbox"
@@ -105,9 +107,10 @@ export function CreateNewPassword() {
             </div>
           </div>
 
-          <div>
-            <div>新しいパスワード確認</div>
+          <div className="create-password-field">
+            <div className="create-password-label">新しいパスワード確認</div>
             <input
+              className="create-password-input"
               id="confirm-password"
               type={showConfirmNewPassword ? "text" : "password"}
               value={confirmNewPassword}
@@ -120,7 +123,7 @@ export function CreateNewPassword() {
             />
           </div>
 
-          <div>
+          <div className="create-password-checkbox">
             <label>
               <input
                 type="checkbox"

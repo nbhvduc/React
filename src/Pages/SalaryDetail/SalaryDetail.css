@@ -1,30 +1,229 @@
-#root {
-  display: flex;
-  flex-direction: column;
+.salary-detail-page {
+  width: min(100% - 48px, 1160px);
+  margin: 0 auto;
+  padding: 36px 0 48px;
+  color: #253247;
+  text-align: left;
 }
 
-.content-salary-container {
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+.salary-month-navigation {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  font-size: large;
-  margin-top: 40px;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
 }
+
+.salary-month-navigation button {
+  width: fit-content;
+  padding: 9px 14px;
+  border: 1px solid #d8e1ed;
+  border-radius: 8px;
+  background: #fff;
+  color: #315d8a;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.salary-month-navigation button:hover {
+  border-color: #8eb0d4;
+  background: #f2f7fc;
+}
+
+.salary-month-navigation button:focus-visible {
+  outline: 3px solid #a8c9ec;
+  outline-offset: 2px;
+}
+
 .goToPreviousMonth {
   justify-self: start;
-  cursor: pointer;
-  margin-left: 400px;
-  color: blue;
 }
+
 .goToNextMonth {
   justify-self: end;
-  cursor: pointer;
-  color: blue;
-  margin-right: 400px;
 }
+
 .monthLabel {
-  justify-self: center;
-  color: red;
+  color: #253247;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.salary-overview {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  align-items: start;
+  gap: 24px;
+}
+
+.salary-profile-panel,
+.salary-breakdown {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid #e1e8f0;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(31, 52, 79, 0.06);
+}
+
+.salary-profile-panel .employee-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 6px;
+  color: #253247;
+  font-size: 22px;
+}
+
+.salary-profile-panel .icon-employee {
+  color: #3976b8;
+}
+
+.salary-profile-panel .p {
+  margin-bottom: 22px;
+  color: #718096;
+  font-size: 14px;
+}
+
+.salary-employee-card {
+  display: grid;
+  gap: 16px;
+}
+
+.salary-employee-card .name-role-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.salary-employee-card .info-grid-container-name {
+  color: #253247;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.salary-employee-card .info-grid-container-span {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #eaf3fc;
+  color: #315d8a;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.salary-employee-card .info-grid-container-email,
+.salary-employee-card .info-grid-container-role {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #4c5b70;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.salary-employee-card .icon-user {
+  display: flex;
+  flex: 0 0 142px;
+  align-items: center;
+  gap: 8px;
+  color: #718096;
+}
+
+.salary-employee-card .icon {
+  color: #6685a8;
+}
+
+.salary-breakdown .info-row,
+.salary-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 4px;
+  border-bottom: 1px solid #edf1f5;
+}
+
+.salary-breakdown .info-lable {
+  width: auto;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.salary-breakdown .info-value {
+  width: auto;
+  color: #253247;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.salary-total-row {
+  margin-top: 4px;
+  padding: 18px 4px 4px;
+  border-bottom: 0;
+}
+
+.salary-breakdown .salary-total-row .info-lable,
+.salary-breakdown .salary-total-row .info-value {
+  color: #214f80;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+@media (max-width: 760px) {
+  .salary-detail-page {
+    width: min(100% - 32px, 560px);
+    padding-top: 24px;
+  }
+
+  .salary-overview {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .salary-profile-panel,
+  .salary-breakdown {
+    padding: 20px;
+  }
+
+  .salary-employee-card .icon-user {
+    flex-basis: 128px;
+  }
+}
+
+@media (max-width: 420px) {
+  .salary-month-navigation {
+    gap: 8px;
+  }
+
+  .salary-month-navigation button {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .monthLabel {
+    font-size: 17px;
+  }
+
+  .salary-profile-panel,
+  .salary-breakdown {
+    padding: 16px;
+  }
+
+  .salary-employee-card .info-grid-container-email,
+  .salary-employee-card .info-grid-container-role {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
 }

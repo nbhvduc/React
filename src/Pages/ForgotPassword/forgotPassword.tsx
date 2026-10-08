@@ -44,13 +44,14 @@ export function ForgotPasswordPage() {
 
   return (
     <form
+      className="forgot-password-page"
       onSubmit={(e) => {
         e.preventDefault();
         hanldeForgotPasswordEmail();
       }}
     >
-      <div>
-        <div>
+      <div className="forgot-password-card">
+        <div className="forgot-password-field">
           <h3 className="title-email">メールを入力してください</h3>
           <label htmlFor="email"></label>
           <input

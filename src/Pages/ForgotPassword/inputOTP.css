@@ -1,27 +1,201 @@
-*,
-body {
+.otp-page,
+.otp-page * {
+  box-sizing: border-box;
+}
+
+.otp-page {
+  display: flex;
+  min-height: 100vh;
+  min-height: 100svh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  background:
+    radial-gradient(ellipse at 12% 8%, rgb(212 239 231 / 70%), transparent 36%),
+    linear-gradient(135deg, #f5f8fc 0%, #edf3f8 100%);
+  color: #172b3a;
+  font-family:
+    Inter, "Noto Sans JP", "Yu Gothic UI", "Hiragino Kaku Gothic ProN",
+    sans-serif;
+}
+
+.otp-page > h2 {
+  width: min(100%, 480px);
   margin: 0;
-  padding: 0;
+  padding: 32px 32px 0;
+  border: 1px solid #e3eaf0;
+  border-bottom: 0;
+  border-radius: 20px 20px 0 0;
+  background: #fff;
+  color: #183b4e;
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
 }
+
 .content-type-input {
-  margin: 50px;
-  gap: 20px;
+  width: min(100%, 480px);
+  margin: 0;
+  padding: 18px 32px 10px;
+  border: 1px solid #e3eaf0;
+  border-top: 0;
+  border-bottom: 0;
+  background: #fff;
+  text-align: center;
 }
+
+.content-type-input h3 {
+  margin: 0 0 10px;
+  color: #344b5a;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.content-type-input p {
+  margin: 0;
+  color: #697b87;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.otp-inputs {
+  display: flex;
+  width: min(100%, 480px);
+  justify-content: center;
+  gap: clamp(8px, 3vw, 14px);
+  margin: 0;
+  padding: 22px 20px;
+  border-right: 1px solid #e3eaf0;
+  border-left: 1px solid #e3eaf0;
+  background: #fff;
+}
+
 .input-OTP {
-  border-radius: 4px;
-  margin-bottom: 12px;
-  width: 200px;
-  height: 30px;
+  width: clamp(44px, 12vw, 56px);
+  height: 58px;
+  padding: 0;
+  border: 1px solid #d4dee6;
+  border-radius: 10px;
+  background: #fbfcfd;
+  color: #183b4e;
+  font: inherit;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
 }
+
+.input-OTP:focus {
+  border-color: #25845f;
+  outline: none;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgb(37 132 95 / 14%);
+}
+
+.otp-page > [style*="color: red"] {
+  width: min(100%, 480px);
+  margin: 0;
+  padding: 0 32px 12px;
+  border-right: 1px solid #e3eaf0;
+  border-left: 1px solid #e3eaf0;
+  background: #fff;
+  font-size: 14px;
+  text-align: center;
+}
+
 .button-input-otp {
-  border-radius: 4px;
-  width: 150px;
-  height: 40px;
-  margin-bottom: 30px;
-  margin-top: 20px;
-  background-color: #7bfdb1;
+  width: min(100%, 416px);
+  min-height: 48px;
+  margin: 0;
+  border: 0;
+  border-radius: 9px;
+  background: #23835e;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
 }
+
+.button-input-otp:hover:not(:disabled),
+.resend-OTP-container button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.button-input-otp:hover:not(:disabled) {
+  background: #196c4c;
+}
+
+.button-input-otp:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.resend-OTP-container {
+  width: min(100%, 480px);
+  padding: 18px 24px 28px;
+  border: 1px solid #e3eaf0;
+  border-top: 0;
+  border-radius: 0 0 20px 20px;
+  background: #fff;
+  text-align: center;
+}
+
 .resend-OTP {
-  color: black;
-  margin-bottom: 10px;
+  margin: 0 0 8px;
+  color: #697b87;
+  font-size: 13px;
+}
+
+.resend-OTP-container button {
+  padding: 4px 8px;
+  border: 0;
+  background: transparent;
+  color: #28745a;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.resend-OTP-container button:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+.otp-page button:focus-visible,
+.otp-page input:focus-visible {
+  outline: 3px solid rgb(37 132 95 / 35%);
+  outline-offset: 2px;
+}
+
+@media (max-width: 420px) {
+  .otp-page {
+    padding: 20px 12px;
+  }
+
+  .otp-page > h2 {
+    padding: 26px 18px 0;
+  }
+
+  .content-type-input {
+    padding: 16px 18px 8px;
+  }
+
+  .otp-inputs {
+    gap: 8px;
+    padding: 18px 12px;
+  }
+
+  .input-OTP {
+    height: 52px;
+  }
 }

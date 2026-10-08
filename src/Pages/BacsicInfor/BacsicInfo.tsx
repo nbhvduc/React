@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useEmployeeInfo } from "../../hooks/useEmployeeInfo";
 import { FaUser, FaEnvelope, FaMoneyBillWave, FaEdit } from "react-icons/fa";
 import "./BacsicInfo.css";
@@ -6,15 +5,8 @@ import { useNavigate } from "react-router";
 
 export function BacsicInfo() {
   const { employee } = useEmployeeInfo();
-  const [image, setImage] = useState<File | null>(null);
   const navigate = useNavigate();
 
-  const handleImageChange = (e: any) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImage(file);
-    }
-  };
   function handleNavigateChangeMyProfile() {
     navigate("/UpdateMyProfile");
   }
@@ -31,21 +23,6 @@ export function BacsicInfo() {
 
       <div className="info-grid-container">
         <div className="info-name-row">
-          <label htmlFor="imageUpload" className="image-box">
-            {image ? (
-              <img src={URL.createObjectURL(image)} alt="Preview" />
-            ) : (
-              <span>+</span>
-            )}
-          </label>
-          <input
-            id="imageUpload"
-            type="file"
-            accept="image/*"
-            hidden
-            onChange={handleImageChange}
-          />
-
           <div className="info-text-group">
             <FaEdit
               onClick={handleNavigateChangeMyProfile}

@@ -81,6 +81,7 @@ export function Register() {
 
   return (
     <form
+      className="register-page"
       onSubmit={(e) => {
         e.preventDefault();
         handleRegister();
