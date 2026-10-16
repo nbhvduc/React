@@ -1,35 +1,26 @@
-import { useEffect } from "react";
-import { useUser } from "../context/userProvider";
+import { useEmployeeInfo } from "../hooks/useEmployeeInfo";
+import "./Home.css";
+export function Home() {
+  const { employee } = useEmployeeInfo();
+  const today = new Date();
 
-export const Home = () => {
-  const { setUser } = useUser();
-
-  useEffect(() => {
-    async function fetchUser() {
-      try {
-        const response = await fetch(
-          "http://127.0.0.1:8000/users/get_employee",
-          {
-            method: "GET",
-            headers: {
-              "content-type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("jwt") || ""}`,
-            },
-          },
-        );
-        const data = await response.json();
-        if (response.ok) {
-          setUser(data);
-        }
-        console.log(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-      }
-    }
-
-    fetchUser();
-  }, [setUser]);
-
-  return <div></div>;
-};
+  const monthLabel = today.toLocaleDateString("ja-JP", {
+    weekday: "short",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  return (
+    <div className="home-content">
+      <div className="header-and-label">
+        <div className="home-header">
+          <div>お疲れ様です</div>
+          <div>{employee?.name}様</div>
+        </div>
+        <div className="monthLabelHome">
+          <div>{monthLabel}</div>
+        </div>
+      </div>
+    </div>
+  );
+}

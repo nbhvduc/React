@@ -1,5 +1,5 @@
 import "./SalaryList.css";
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 import { useNavigate } from "react-router";
 
 export function SalaryList() {
@@ -13,7 +13,7 @@ export function SalaryList() {
     navigate(`/SalaryDetail/${selectYear}/${month}`);
   }
 
-  function handleSelectYear(e: any) {
+  function handleSelectYear(e: ChangeEvent<HTMLSelectElement>) {
     setSelectYear(e.target.value);
   }
 

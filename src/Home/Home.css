@@ -1,0 +1,24 @@
+.home-header {
+  margin-right: auto;
+  margin-left: 20px;
+  font-weight: 500;
+  color: rgb(27, 11, 16);
+  margin-top: 20px;
+}
+.monthLabelHome {
+  margin-left: auto;
+  color: blue;
+  margin-right: 130px;
+  margin-top: 30px;
+}
+.home-content {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+.header-and-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}

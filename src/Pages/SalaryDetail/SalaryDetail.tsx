@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { useParams } from "react-router";
+import { useNavigate } from "react-router";
 import { useGetSalaryEmployee } from "../../hooks/useGetSalary";
 import { FaUser, FaEnvelope } from "react-icons/fa";
 import { useEmployeeInfo } from "../../hooks/useEmployeeInfo";
@@ -7,40 +7,34 @@ import "./SalaryDetail.css";
 
 export function SalaryDetail() {
   const { year, month } = useParams();
-  const yearAsNumber = Number(year);
-  const monthAsNumber = Number(month);
-  const { SalaryInfo } = useGetSalaryEmployee(yearAsNumber, monthAsNumber);
+  const navigate = useNavigate();
+  const selectedYear = Number(year);
+  const selectedMonth = Number(month);
+  const selectedDate = new Date(selectedYear, selectedMonth - 1, 1);
+  const { SalaryInfo } = useGetSalaryEmployee(selectedYear, selectedMonth);
   const { employee } = useEmployeeInfo();
 
-  const [currentTime, setCurrentTime] = useState(
-    new Date(yearAsNumber, monthAsNumber - 1),
-  );
-
   const goToPreviousMonth = () => {
-    setCurrentTime((prev) => {
-      const newTime = new Date(prev);
-
-      const newMonth = newTime.getMonth() - 1;
-
-      newTime.setMonth(newMonth);
-
-      return newTime;
-    });
+    const previousMonth = new Date(selectedYear, selectedMonth - 2, 1);
+    navigate(
+      `/SalaryDetail/${previousMonth.getFullYear()}/${previousMonth.getMonth() + 1}`,
+    );
   };
 
-  const goToNextMoth = () => {
-    setCurrentTime((prev) => {
-      const newTime = new Date(prev);
-
-      const newMonth = newTime.getMonth() + 1;
-
-      newTime.setMonth(newMonth);
-
-      return newTime;
-    });
+  const goToNextMonth = () => {
+    const nextMonth = new Date(selectedYear, selectedMonth, 1);
+    navigate(
+      `/SalaryDetail/${nextMonth.getFullYear()}/${nextMonth.getMonth() + 1}`,
+    );
   };
 
-  const monthLabel = currentTime.toLocaleDateString("ja-JP", {
+  const today = new Date();
+  const isCurrentOrFutureMonth =
+    selectedYear > today.getFullYear() ||
+    (selectedYear === today.getFullYear() &&
+      selectedMonth >= today.getMonth() + 1);
+
+  const monthLabel = selectedDate.toLocaleDateString("ja-JP", {
     month: "long",
     year: "numeric",
   });
@@ -55,7 +49,12 @@ export function SalaryDetail() {
           ＜先月
         </button>
         <div className="monthLabel">{monthLabel}</div>
-        <button className="goToNextMonth" type="button" onClick={goToNextMoth}>
+        <button
+          className="goToNextMonth"
+          type="button"
+          onClick={goToNextMonth}
+          disabled={isCurrentOrFutureMonth}
+        >
           ＞来月
         </button>
       </nav>
