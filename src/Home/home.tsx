@@ -1,7 +1,9 @@
 import { useEmployeeInfo } from "../hooks/useEmployeeInfo";
 import "./Home.css";
+import { useGetWorkTimeMonth } from "../hooks/useGetWorkTime";
 export function Home() {
   const { employee } = useEmployeeInfo();
+  const { data } = useGetWorkTimeMonth();
   const today = new Date();
 
   const monthLabel = today.toLocaleDateString("ja-JP", {
@@ -21,6 +23,7 @@ export function Home() {
           <div>{monthLabel}</div>
         </div>
       </div>
+      <div>{data?.work_date}</div>
     </div>
   );
 }
