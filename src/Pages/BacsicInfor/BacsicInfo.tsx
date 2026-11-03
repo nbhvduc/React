@@ -1,6 +1,6 @@
 import { useEmployeeInfo } from "../../hooks/useEmployeeInfo";
 import { FaUser, FaEnvelope, FaMoneyBillWave, FaEdit } from "react-icons/fa";
-import "./BacsicInfo.css";
+import "./bacsicInfo.css";
 import { useNavigate } from "react-router";
 
 export function BacsicInfo() {

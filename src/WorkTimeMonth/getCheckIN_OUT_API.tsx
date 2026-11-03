@@ -1,4 +1,4 @@
-export async function getWorkTimeMonth() {
+export async function getCheckInOutDay() {
   const token = localStorage.getItem("jwt");
 
   const res = await fetch("http://127.0.0.1:8000/get_attendance_time", {

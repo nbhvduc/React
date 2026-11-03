@@ -4,7 +4,7 @@ import "./forgotPassword.css";
 
 export function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
-  const [code, setCode] = useState("");
+  const code = "";
   const [ErrorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();

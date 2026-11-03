@@ -11,7 +11,7 @@ import ErrorPage from "./ErrorPage";
 import { InputOTP } from "./Pages/ForgotPassword/inputOTP";
 import { CreateNewPassword } from "./Pages/ForgotPassword/CreateNewPassword";
 import { SalaryDetail } from "./Pages/SalaryDetail/SalaryDetail";
-import { ChangePassword } from "./Pages/ChangePassword/changepassword";
+import { ChangePassword } from "./Pages/ChangePassword/Changepassword";
 import { CreateEmployee } from "./Pages/CreateEmployee/CreateEmployee";
 import { BacsicInfo } from "./Pages/BacsicInfor/BacsicInfo";
 import { UpdateMyProfile } from "./Pages/ChangeSeflProfile/changeMyProfile";

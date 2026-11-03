@@ -1,4 +1,4 @@
-import { getWorkTimeMonth } from "../WorkTimeMonth/getWorkTimeAPI";
+import { getCheckInOutDay } from "../WorkTimeMonth/getCheckIN_OUT_API";
 import { useEffect, useState } from "react";
 
 interface WorkTime {
@@ -7,12 +7,12 @@ interface WorkTime {
   check_out: string | null;
 }
 
-export function useGetWorkTimeMonth() {
+export function useGetCheckInOutDay() {
   const [data, setData] = useState<WorkTime | null>(null);
 
   async function WorkTimeMonth() {
     try {
-      const data = await getWorkTimeMonth();
+      const data = await getCheckInOutDay();
       setData(data);
     } catch (error) {
       console.log(error);
