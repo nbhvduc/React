@@ -1,3 +1,27 @@
+.app-layout {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  grid-template-rows: 75px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.app-header {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+
+.app-sidebar {
+  grid-column: 1;
+  grid-row: 2;
+  min-height: calc(100vh - 75px);
+}
+
+.app-content {
+  grid-column: 2;
+  grid-row: 2;
+  min-width: 0;
+}
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;

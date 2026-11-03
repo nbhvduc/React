@@ -4,12 +4,14 @@ export type User = {
   id: number;
   email: string;
   role: "user" | "admin";
+  name: string;
+  employee_code: string;
   is_active: boolean;
 };
 
 export type UserContextType = {
   user: User | null;
-  setUser: (user: User) => void;
+  setUser: (user: User | null) => void;
 };
 
 export const UserContext = createContext<UserContextType | null>(null);

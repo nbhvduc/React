@@ -4,7 +4,7 @@ import "./forgotPassword.css";
 
 export function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
-  const [code, setCode] = useState("");
+  const code = "";
   const [ErrorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -44,13 +44,14 @@ export function ForgotPasswordPage() {
 
   return (
     <form
+      className="forgot-password-page"
       onSubmit={(e) => {
         e.preventDefault();
         hanldeForgotPasswordEmail();
       }}
     >
-      <div>
-        <div>
+      <div className="forgot-password-card">
+        <div className="forgot-password-field">
           <h3 className="title-email">メールを入力してください</h3>
           <label htmlFor="email"></label>
           <input

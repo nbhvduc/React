@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 
 export function SearchUser() {
   const [search, setSearch] = useState("");
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [, setUsers] = useState([]);
+  const [, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
