@@ -3,6 +3,18 @@ import { useGetWorkingTimeMonth } from "../hooks/useGetWorkingTimeMonth.tsx";
 import { useTotalWorkingDaysMonth } from "../hooks/useTotalWorkingDaysMonth.tsx";
 import { useTotalWorkingNight } from "../hooks/useGetTotalWorkingNight.tsx";
 import { formatMinutesJa } from "../utils/formatTime.ts";
+import { useGetCheckInOutDay } from "../hooks/useGetCheckInOutDay.tsx";
+import { Coffee, Moon, Sun } from "lucide-react";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+import { useAttendanceYearChart } from "../hooks/useAttendanceYearChart.tsx";
 import "./Home.css";
 
 export function Home() {
@@ -14,6 +26,8 @@ export function Home() {
   const { totalTime } = useGetWorkingTimeMonth(year, month);
   const { workingDays } = useTotalWorkingDaysMonth(year, month);
   const { workingNight } = useTotalWorkingNight(year, month);
+  const { data } = useGetCheckInOutDay();
+  const { dataChart } = useAttendanceYearChart(year);
 
   const monthLabel = today.toLocaleDateString("ja-JP", {
     weekday: "short",
@@ -167,6 +181,53 @@ export function Home() {
               : "-"}
           </p>
         </article>
+      </section>
+      <section className="today-attendance">
+        <p className="today-status">今日勤務状況</p>
+        <div className="checkin-out-status">
+          <div className="attendance-time">
+            <p className="attendance-time-label">
+              <Sun className="attendance-icon attendance-icon--day" aria-hidden="true" />
+              出勤時間
+            </p>
+            <p>{data?.check_in ?? "-"}</p>
+          </div>
+          <div className="attendance-time">
+            <p className="attendance-time-label">
+              <Moon className="attendance-icon attendance-icon--night" aria-hidden="true" />
+              退勤時間
+            </p>
+            <p>{data?.check_out ?? "-"}</p>
+          </div>
+          <div className="attendance-time">
+            <p className="attendance-time-label">
+              <Coffee className="attendance-icon attendance-icon--break" aria-hidden="true" />
+              休憩時間
+            </p>
+            <p>
+              {data?.worked_minutes != null
+                ? formatMinutesJa(data.worked_minutes)
+                : "-"}
+            </p>
+          </div>
+        </div>
+      </section>
+      <section className="attendance-chart">
+        <p className="status-chart">月別勤務時間</p>
+        <div className="attendance-chart-container">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={dataChart}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis
+                dataKey="month"
+                tickFormatter={(value: string) => value.slice(5)}
+              />
+              <YAxis unit="h" />
+              <Tooltip />
+              <Bar dataKey="total_hour" name="勤務時間" fill="#4f46e5" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </section>
     </main>
   );

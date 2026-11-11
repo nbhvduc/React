@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 
 interface WorkTime {
   work_date: string;
-  check_in: string | null;
-  check_out: string | null;
+  check_in: number | null;
+  check_out: number | null;
+  worked_minutes: number | null;
 }
 
 export function useGetCheckInOutDay() {
