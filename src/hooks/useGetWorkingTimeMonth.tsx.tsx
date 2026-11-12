@@ -1,5 +1,5 @@
 import { workingTimeMonthAPI } from "../WokingTime/getWorkingTimeAPI";
-import { useState, useEffect } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface WorkingTimeMonth {
   total_work_times: number;
@@ -8,18 +8,30 @@ interface WorkingTimeMonth {
 
 export function useGetWorkingTimeMonth(year: number, month: number) {
   const [totalTime, setTotalTime] = useState<WorkingTimeMonth | null>(null);
+  const requestIdRef = useRef(0);
 
-  useEffect(() => {
-    async function fetchTotalWorkingTime() {
-      try {
-        const data = await workingTimeMonthAPI(year, month);
+  const fetchTotalWorkingTime = useCallback(async () => {
+    const requestId = ++requestIdRef.current;
+
+    try {
+      const data = await workingTimeMonthAPI(year, month);
+      if (requestId === requestIdRef.current) {
         setTotalTime(data);
-      } catch (error) {
+      }
+    } catch (error) {
+      if (requestId === requestIdRef.current) {
         console.log(error);
       }
     }
-    void fetchTotalWorkingTime();
   }, [year, month]);
+
+  useEffect(() => {
+    void fetchTotalWorkingTime();
+
+    return () => {
+      requestIdRef.current += 1;
+    };
+  }, [fetchTotalWorkingTime]);
 
   return {
     totalTime,

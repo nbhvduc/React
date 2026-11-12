@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
 import "./login.css";
@@ -10,10 +10,20 @@ export function Login() {
   const [loading, setLoading] = useState(false);
   const [ErrorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const redirectTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const { setUser } = useUser();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    return () => {
+      console.log("cleartimeout");
+      if (redirectTimeoutRef.current !== null) {
+        clearTimeout(redirectTimeoutRef.current);
+      }
+    };
+  }, []);
 
   async function handleLogin() {
     setLoading(true);
@@ -69,7 +79,8 @@ export function Login() {
 
       setUser(userResponse.ok ? userData : loggedInUser);
 
-      setTimeout(() => {
+      redirectTimeoutRef.current = setTimeout(() => {
+        redirectTimeoutRef.current = null;
         navigate("/");
       }, 500);
     } catch (error) {
